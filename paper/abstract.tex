@@ -1,0 +1,34 @@
+Choosing the gaps of Shellsort is a well-known open problem.  For more than
+sixty years, successful gap sequences have come from special human-designed
+formulas, numerical searches, or number-theoretic constructions.  Stronger
+general bounds are known for dense or mainly theoretical families, but the
+worst-case upper bound for a short, sparse, and practically competitive
+construction has not advanced beyond the landmark $N^{4/3}$ line for decades.
+We ask whether the sequence itself can instead be learned from execution.  We
+present an RL-driven, self-supervised system that searches over executable gap
+generators.  Every proposal is valid by construction.  Executed candidates
+return exact comparison and move counts, with deterministic censoring only
+beyond a fixed budget; no classical sequence is used as a target.  Across five
+independent searches, the system discovers a common
+rational-geometric family.  A second self-supervised stage tunes only a finite
+prefix and produces the exact practical sequence
+$1,3,8,20,47,116,300,585,1416,3303,\ldots$.  After all choices are frozen, this
+sequence obtains the lowest equal-task average operation count among seven
+classical baselines on 25 large tasks with $10^7<N\le10^8$.  We then complete
+the learned tail without changing its practical behavior: only beyond
+$10^{1000}$, a zero-density set of unit companions $h_s+1$ removes the
+remaining congruence barriers in the pass analysis.  The resulting sparse
+sequence has matching polynomial upper and lower exponents, up to
+polylogarithmic factors:
+\[
+  \Omega\!\left(N^{1.024296451657\ldots}\right)
+  \ \le\ T(N)\ \le\
+  \bigO\!\left(N^{1.024296451657\ldots}\polylog N\right).
+\]
+The lower bound follows by applying Zang's recent preprint theorem for
+rational-geometric sequences; our contribution is the matching upper bound.
+Code and frozen evaluation artifacts are publicly available at
+\url{https://github.com/shanxierdan/ShellSort}.
+Thus one exact sequence connects self-supervised algorithm discovery,
+large-scale practical performance, and a substantial step below the classical
+$N^{4/3}$ bound for sparse practical Shellsort sequences.

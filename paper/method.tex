@@ -1,0 +1,114 @@
+\section{RL-driven Generator Discovery}
+\label{sec:method}
+
+\subsection{Search problem and program space}
+
+For an array of length $N>1$, a legal gap list is
+
+\[
+  H(N)=(g_1,\ldots,g_p),
+  \qquad N>g_1>\cdots>g_p=1.
+\]
+
+An $h$-pass insertion-sorts the positions in each residue class modulo $h$.
+We count every key comparison and every array write.  For a task $T$, which
+fixes the length, input distribution, and random seed, the exact cost of a
+generator $G$ is
+
+\[
+  C(G,T)=C_{\rm cmp}(G,T)+C_{\rm mov}(G,T).
+\]
+
+All candidates in one run use the same task panel $\mathcal T$.  We minimize
+
+\begin{equation}
+  J(G)=\frac1{|\mathcal T|}\sum_{T\in\mathcal T}
+  \log\!\left(
+    \frac{C(G,T)+1}{N_T\log_2(N_T+1)}
+  \right).
+  \label{eq:search-objective}
+\end{equation}
+
+The scale term makes different values of $N$ comparable.  It does not use a
+baseline sequence.  The five input types are random, reversed, nearly sorted,
+duplicate-heavy, and permuted ordered blocks.
+
+The search acts on complete programs, not fixed gap lists.  A program has up
+to four real registers, 32 statements, and a bounded loop.  It can assign
+values, test conditions, and emit rounded expressions built from protected
+arithmetic, logarithms, powers, roots, minima, maxima, and modulus.  Its loop
+budget is at most
+
+\[
+  F(N)=\min\{512,\ b+c\lceil\log_2(N+1)\rceil\}.
+\]
+
+Every execution starts with the gap 1.  Emitted values are filtered and sorted:
+
+\begin{equation}
+  H_G(N)=\operatorname{sort}_{\downarrow}
+  \bigl(\{h:1\le h<N\}\cup\{1\}\bigr).
+  \label{eq:generator-semantics}
+\end{equation}
+
+Thus every program stops and returns a legal sequence.  The language can
+express formulas, recurrences, branches, unions, and multi-register state.  We
+edit programs with eight valid actions: replace an expression, insert an
+emission, insert an assignment, delete or duplicate a statement, toggle a
+condition, change a constant, or change the loop budget.  Each action maps one
+complete program to another, so search time is not wasted on broken syntax.
+
+\subsection{Learning and search}
+
+The model reads both the program and its measured behavior.  A three-layer
+Transformer encodes program tokens.  A two-layer Transformer encodes the
+generated gaps and their per-pass comparisons and moves.  Both use width 128,
+four attention heads, feed-forward width 512, and dropout 0.1.  The model has
+1,099,660 parameters and predicts:
+
+\begin{itemize}
+  \item which of the eight edits to try;
+  \item the normalized comparison and move costs; and
+  \item the change caused by deleting each gap.
+\end{itemize}
+
+Deleting one gap on a small task gives an exact contribution target.  All
+other targets come from normal executions.  With Huber cost and contribution
+losses, pairwise ranking loss, and edit cross entropy, we train with
+
+\begin{equation}
+  \mathcal L=\ell_{\rm cost}+0.5\ell_{\rm rank}
+  +0.3\ell_{\rm edit}+0.25\ell_{\rm contribution}.
+  \label{eq:training-loss}
+\end{equation}
+
+The model guides proposals but never decides their scores.  Every surviving
+child is run and measured exactly.  Improving parent--child edits receive
+extra replay weight.  We take 64 gradient steps per round with batch size 64.
+In RL terms, the state is a program and its trace, the action is a program
+edit, and the reward is the exact cost improvement.  We do not use a policy
+gradient estimator.
+
+Each round evaluates new programs, keeps a Pareto archive over comparisons,
+moves, pass count, and program size, and mutates elite parents.  The score also
+rewards short and behaviorally different programs.  We sample 35\% of edits
+uniformly, so every edit remains reachable even if the learned policy becomes
+too narrow.  Programs that emit the same gaps on all probe sizes are merged.
+Exact costs are stored in SQLite, and checkpoints save the model, optimizer,
+population, archive, replay data, and random state.
+
+We run five seeds for 120 rounds.  Each population has 48 programs, 12 elite
+parents, and six children per parent.  The common Search panel has 16 sizes
+from 32 to $10^5$, five input types, and two task seeds: 160 tasks per
+candidate.  The replay buffer holds 200,000 samples.  Runs above
+$50N\log_2(N+1)$ operations are stopped and cannot be selected.
+
+An independent Validation panel freezes one candidate per seed; the later
+Extrapolation panel is used only for reporting.  The best frozen program is an
+exact rational-geometric generator.  We then tune only its first eight gaps.
+The learned tail from 1416 onward stays fixed.  This second search changes one
+prefix value at a time and uses the same baseline-free objective.  Its Search,
+Validation, and one-time Test use disjoint seeds 300, 400, and 1999 and the
+disjoint ranges $10^5$--$3\cdot10^6$, $3\cdot10^6$--$10^7$, and
+$10^7$--$10^8$.  Since only finitely many gaps change, this tuning also keeps
+the later proof unchanged.

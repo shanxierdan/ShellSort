@@ -1,0 +1,1017 @@
+{
+  "schema_version": 3,
+  "evaluator_version": 3,
+  "stage": "final_test",
+  "protocol": {
+    "points": 5,
+    "sizes": [
+      10000001,
+      17782795,
+      31622778,
+      56234134,
+      100000000
+    ],
+    "distributions": [
+      "random",
+      "reversed",
+      "nearly_sorted",
+      "duplicates",
+      "blocks"
+    ],
+    "seeds": [
+      999
+    ],
+    "baselines": [
+      "sedgewick",
+      "tokuda",
+      "ciura"
+    ],
+    "array_generator": "numpy_pcg64_v1",
+    "primary_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+    "success_rule": "zero censored tasks and negative mean log operation ratio against each of Sedgewick, Tokuda and Ciura"
+  },
+  "task_panel_hash": "1d07dd802f5f3bc406fab482c0d02ee7539457123c9e043df573e6add23574fc",
+  "evaluation_signature": "bc3f4b3b7caaa0b23a11187ed523d2902ef47b9bd83a89ab90108c1948aa2081",
+  "train_best_program_hash": null,
+  "validation_selected_program_hashes": [
+    "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c"
+  ],
+  "reports": [
+    {
+      "program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "source_seeds": [
+        4
+      ],
+      "task_count": 25,
+      "comparisons": 40251798641,
+      "moves": 29191506381,
+      "censored_tasks": 0,
+      "complexity": [
+        9,
+        2
+      ],
+      "fixed_baseline_log_ratios": {
+        "sedgewick": -0.01591210293096472,
+        "tokuda": 0.001132703883056919,
+        "ciura": 0.0012239805267456577
+      },
+      "task_results": [
+        {
+          "task_id": "n10000001-random-s999",
+          "n": 10000001,
+          "distribution": "random",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 387595762,
+            "moves": 314188926,
+            "total": 701784688,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 396284237,
+              "moves": 310931412,
+              "total": 707215649,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 385168114,
+              "moves": 306461328,
+              "total": 691629442,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 385044140,
+              "moves": 310493269,
+              "total": 695537409,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.007708994449251205,
+            "tokuda": 0.014576320955129129,
+            "ciura": 0.008941847596009214
+          }
+        },
+        {
+          "task_id": "n10000001-reversed-s999",
+          "n": 10000001,
+          "distribution": "reversed",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 239951687,
+            "moves": 128682939,
+            "total": 368634626,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 251484423,
+              "moves": 122494250,
+              "total": 373978673,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 255945018,
+              "moves": 148133042,
+              "total": 404078060,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 246932624,
+              "moves": 141793003,
+              "total": 388725627,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.014392791632436234,
+            "tokuda": -0.09180209682760242,
+            "ciura": -0.0530677855146116
+          }
+        },
+        {
+          "task_id": "n10000001-nearly_sorted-s999",
+          "n": 10000001,
+          "distribution": "nearly_sorted",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 360252946,
+            "moves": 268866366,
+            "total": 629119312,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 370595206,
+              "moves": 265452403,
+              "total": 636047609,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 359272558,
+              "moves": 262406757,
+              "total": 621679315,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 359439933,
+              "moves": 266374099,
+              "total": 625814032,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.010952493512306304,
+            "tokuda": 0.011896534860742132,
+            "ciura": 0.005267670436103821
+          }
+        },
+        {
+          "task_id": "n10000001-duplicates-s999",
+          "n": 10000001,
+          "distribution": "duplicates",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 287962192,
+            "moves": 172200042,
+            "total": 460162234,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 288937761,
+              "moves": 162024258,
+              "total": 450962019,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 288783424,
+              "moves": 167241177,
+              "total": 456024601,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 284975330,
+              "moves": 168573907,
+              "total": 453549237,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.02019598899082483,
+            "tokuda": 0.00903235227366227,
+            "ciura": 0.014475275106922628
+          }
+        },
+        {
+          "task_id": "n10000001-blocks-s999",
+          "n": 10000001,
+          "distribution": "blocks",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 375074041,
+            "moves": 299965003,
+            "total": 675039044,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 396558472,
+              "moves": 310732555,
+              "total": 707291027,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 373653172,
+              "moves": 292834582,
+              "total": 666487754,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 373701467,
+              "moves": 297457254,
+              "total": 671158721,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.04667168545953148,
+            "tokuda": 0.012748766287077665,
+            "ciura": 0.005764879190286532
+          }
+        },
+        {
+          "task_id": "n17782795-random-s999",
+          "n": 17782795,
+          "distribution": "random",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 718270275,
+            "moves": 583903773,
+            "total": 1302174048,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 740292100,
+              "moves": 582350939,
+              "total": 1322643039,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 713699508,
+              "moves": 570191825,
+              "total": 1283891333,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 714511584,
+              "moves": 575690722,
+              "total": 1290202306,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.015596824652098471,
+            "tokuda": 0.014139642194392657,
+            "ciura": 0.009236179830374126
+          }
+        },
+        {
+          "task_id": "n17782795-reversed-s999",
+          "n": 17782795,
+          "distribution": "reversed",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 445349593,
+            "moves": 243728390,
+            "total": 689077983,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 472645493,
+              "moves": 236914635,
+              "total": 709560128,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 458202604,
+              "moves": 254654173,
+              "total": 712856777,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 454911379,
+              "moves": 253332831,
+              "total": 708244210,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.02929079248962472,
+            "tokuda": -0.03392607893256782,
+            "ciura": -0.027434516075826032
+          }
+        },
+        {
+          "task_id": "n17782795-nearly_sorted-s999",
+          "n": 17782795,
+          "distribution": "nearly_sorted",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 669332475,
+            "moves": 502873153,
+            "total": 1172205628,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 689152128,
+              "moves": 494754270,
+              "total": 1183906398,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 667424484,
+              "moves": 490242127,
+              "total": 1157666611,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 668194225,
+              "moves": 497066654,
+              "total": 1165260879,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.009932351307944157,
+            "tokuda": 0.012480689257814223,
+            "ciura": 0.005942133850959927
+          }
+        },
+        {
+          "task_id": "n17782795-duplicates-s999",
+          "n": 17782795,
+          "distribution": "duplicates",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 531793614,
+            "moves": 318371000,
+            "total": 850164614,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 537364117,
+              "moves": 301241556,
+              "total": 838605673,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 534323883,
+              "moves": 311086016,
+              "total": 845409899,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 527695221,
+              "moves": 310743229,
+              "total": 838438450,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.01368939468724759,
+            "tokuda": 0.0056083969426020674,
+            "ciura": 0.013888820567653972
+          }
+        },
+        {
+          "task_id": "n17782795-blocks-s999",
+          "n": 17782795,
+          "distribution": "blocks",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 695689163,
+            "moves": 558041535,
+            "total": 1253730698,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 736905120,
+              "moves": 577362765,
+              "total": 1314267885,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 694415463,
+              "moves": 547542458,
+              "total": 1241957921,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 691809674,
+              "moves": 549431400,
+              "total": 1241241074,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.04715610434831755,
+            "tokuda": 0.00943456184903843,
+            "ciura": 0.010011919540289965
+          }
+        },
+        {
+          "task_id": "n31622778-random-s999",
+          "n": 31622778,
+          "distribution": "random",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 1329340589,
+            "moves": 1084758039,
+            "total": 2414098628,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 1368172708,
+              "moves": 1074727387,
+              "total": 2442900095,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 1320477479,
+              "moves": 1051707401,
+              "total": 2372184880,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 1320077602,
+              "moves": 1066068706,
+              "total": 2386146308,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.011859918532223254,
+            "tokuda": 0.017514557740312506,
+            "ciura": 0.01164633734658504
+          }
+        },
+        {
+          "task_id": "n31622778-reversed-s999",
+          "n": 31622778,
+          "distribution": "reversed",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 819399558,
+            "moves": 462489460,
+            "total": 1281889018,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 864765531,
+              "moves": 424598517,
+              "total": 1289364048,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 858104507,
+              "moves": 473634564,
+              "total": 1331739071,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 847677300,
+              "moves": 487014294,
+              "total": 1334691594,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.005814325436620404,
+            "tokuda": -0.03815087492853141,
+            "ciura": -0.04036546407441701
+          }
+        },
+        {
+          "task_id": "n31622778-nearly_sorted-s999",
+          "n": 31622778,
+          "distribution": "nearly_sorted",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 1241284845,
+            "moves": 937011449,
+            "total": 2178296294,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 1278331187,
+              "moves": 919056994,
+              "total": 2197388181,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 1239110191,
+              "moves": 912525414,
+              "total": 2151635605,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 1237862265,
+              "moves": 926103079,
+              "total": 2163965344,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.008726409892897089,
+            "tokuda": 0.01231475530807031,
+            "ciura": 0.006600708672397172
+          }
+        },
+        {
+          "task_id": "n31622778-duplicates-s999",
+          "n": 31622778,
+          "distribution": "duplicates",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 983053484,
+            "moves": 591643786,
+            "total": 1574697270,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 994925900,
+              "moves": 555660538,
+              "total": 1550586438,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 987174189,
+              "moves": 570152009,
+              "total": 1557326198,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 973815763,
+              "moves": 574520641,
+              "total": 1548336404,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.015429837796579844,
+            "tokuda": 0.011092669188464207,
+            "ciura": 0.016881977464881383
+          }
+        },
+        {
+          "task_id": "n31622778-blocks-s999",
+          "n": 31622778,
+          "distribution": "blocks",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 1294504446,
+            "moves": 1044357456,
+            "total": 2338861902,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 1369416425,
+              "moves": 1073418196,
+              "total": 2442834621,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 1288067713,
+              "moves": 1012673470,
+              "total": 2300741183,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 1281477568,
+              "moves": 1019961582,
+              "total": 2301439150,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.043494650530607415,
+            "tokuda": 0.016433119880362584,
+            "ciura": 0.01612979973445554
+          }
+        },
+        {
+          "task_id": "n56234134-random-s999",
+          "n": 56234134,
+          "distribution": "random",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 2454928950,
+            "moves": 1996758656,
+            "total": 4451687606,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 2534217594,
+              "moves": 1987875156,
+              "total": 4522092750,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 2439174367,
+              "moves": 1943700259,
+              "total": 4382874626,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 2440379125,
+              "moves": 1974804390,
+              "total": 4415183515,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.015691622888620697,
+            "tokuda": 0.015578445166865174,
+            "ciura": 0.008233862143885572
+          }
+        },
+        {
+          "task_id": "n56234134-reversed-s999",
+          "n": 56234134,
+          "distribution": "reversed",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 1509546509,
+            "moves": 814704838,
+            "total": 2324251347,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 1584004036,
+              "moves": 732894059,
+              "total": 2316898095,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 1569433573,
+              "moves": 841425494,
+              "total": 2410859067,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 1574629275,
+              "moves": 944783531,
+              "total": 2519412806,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.0031687228525765655,
+            "tokuda": -0.03658515741122152,
+            "ciura": -0.08062787495062865
+          }
+        },
+        {
+          "task_id": "n56234134-nearly_sorted-s999",
+          "n": 56234134,
+          "distribution": "nearly_sorted",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 2301763813,
+            "moves": 1741905787,
+            "total": 4043669600,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 2377701323,
+              "moves": 1719330348,
+              "total": 4097031671,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 2294774888,
+              "moves": 1697762678,
+              "total": 3992537566,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 2294652792,
+              "moves": 1722654734,
+              "total": 4017307526,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.013110132287453363,
+            "tokuda": 0.01272558632656414,
+            "ciura": 0.006540687949720896
+          }
+        },
+        {
+          "task_id": "n56234134-duplicates-s999",
+          "n": 56234134,
+          "distribution": "duplicates",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 1813912102,
+            "moves": 1083492924,
+            "total": 2897405026,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 1845796980,
+              "moves": 1028634464,
+              "total": 2874431444,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 1821427132,
+              "moves": 1050999726,
+              "total": 2872426858,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 1797614472,
+              "moves": 1062037811,
+              "total": 2859652283,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.00796062169600465,
+            "tokuda": 0.008658250200227527,
+            "ciura": 0.013115479708251556
+          }
+        },
+        {
+          "task_id": "n56234134-blocks-s999",
+          "n": 56234134,
+          "distribution": "blocks",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 2400197317,
+            "moves": 1933654053,
+            "total": 4333851370,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 2563193144,
+              "moves": 2019889033,
+              "total": 4583082177,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 2379000185,
+              "moves": 1871782554,
+              "total": 4250782739,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 2373658230,
+              "moves": 1896853835,
+              "total": 4270512065,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.05591512761367687,
+            "tokuda": 0.019353468706079825,
+            "ciura": 0.014722866971730721
+          }
+        },
+        {
+          "task_id": "n100000000-random-s999",
+          "n": 100000000,
+          "distribution": "random",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 4529157340,
+            "moves": 3689639167,
+            "total": 8218796507,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 4767653273,
+              "moves": 3767446388,
+              "total": 8535099661,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 4495996549,
+              "moves": 3598285371,
+              "total": 8094281920,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 4505004784,
+              "moves": 3634774948,
+              "total": 8139779732,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.037763244908130156,
+            "tokuda": 0.015265911420627498,
+            "ciura": 0.009660668309772658
+          }
+        },
+        {
+          "task_id": "n100000000-reversed-s999",
+          "n": 100000000,
+          "distribution": "reversed",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 2846252694,
+            "moves": 1622113040,
+            "total": 4468365734,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 2979806312,
+              "moves": 1465681732,
+              "total": 4445488044,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 2921527413,
+              "moves": 1667212592,
+              "total": 4588740005,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 2838144000,
+              "moves": 1547072903,
+              "total": 4385216903,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.005133075053119271,
+            "tokuda": -0.02658274349911429,
+            "ciura": 0.018783644797160916
+          }
+        },
+        {
+          "task_id": "n100000000-nearly_sorted-s999",
+          "n": 100000000,
+          "distribution": "nearly_sorted",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 4254171146,
+            "moves": 3234831268,
+            "total": 7489002414,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 4406500049,
+              "moves": 3190741224,
+              "total": 7597241273,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 4233092970,
+              "moves": 3150082678,
+              "total": 7383175648,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 4244019694,
+              "moves": 3191691657,
+              "total": 7435711351,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.014349591392076422,
+            "tokuda": 0.014231748939745298,
+            "ciura": 0.007141348278259669
+          }
+        },
+        {
+          "task_id": "n100000000-duplicates-s999",
+          "n": 100000000,
+          "distribution": "duplicates",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 3339218274,
+            "moves": 1994932023,
+            "total": 5334150297,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 3416734463,
+              "moves": 1901669612,
+              "total": 5318404075,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 3352747394,
+              "moves": 1945839246,
+              "total": 5298586640,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 3314390958,
+              "moves": 1943267374,
+              "total": 5257658332,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": 0.0029563300811269906,
+            "tokuda": 0.006689489230206605,
+            "ciura": 0.014443858930110775
+          }
+        },
+        {
+          "task_id": "n100000000-blocks-s999",
+          "n": 100000000,
+          "distribution": "blocks",
+          "seed": 999,
+          "candidate": {
+            "comparisons": 4423795826,
+            "moves": 3568393308,
+            "total": 7992189134,
+            "censored": false
+          },
+          "baselines": {
+            "sedgewick": {
+              "comparisons": 4819276011,
+              "moves": 3820478675,
+              "total": 8639754686,
+              "censored": false
+            },
+            "tokuda": {
+              "comparisons": 4392090168,
+              "moves": 3476472603,
+              "total": 7868562771,
+              "censored": false
+            },
+            "ciura": {
+              "comparisons": 4382367628,
+              "moves": 3493469800,
+              "total": 7875837428,
+              "censored": false
+            }
+          },
+          "log_ratios": {
+            "sedgewick": -0.07790948309778194,
+            "tokuda": 0.015589281947476191,
+            "ciura": 0.014665187358312666
+          }
+        }
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": -0.005137539451209167,
+        "mean_log_ratio": -0.007560966153913699,
+        "ratios": {
+          "sedgewick": -0.011612552650998169,
+          "tokuda": -0.005137539451209167,
+          "ciura": -0.005932806359533761
+        }
+      }
+    }
+  ],
+  "final_test_decision": {
+    "success": false,
+    "zero_censored_tasks": true,
+    "beats_every_preregistered_baseline": false,
+    "mean_log_ratios": {
+      "sedgewick": -0.01591210293096472,
+      "tokuda": 0.001132703883056919,
+      "ciura": 0.0012239805267456577
+    }
+  }
+}

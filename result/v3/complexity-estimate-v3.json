@@ -1,0 +1,1765 @@
+{
+  "schema_version": 1,
+  "status": "descriptive_estimate_not_asymptotic_proof",
+  "candidate_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+  "metric": "comparisons_plus_moves",
+  "input_distribution": "uniform_random_permutation",
+  "stages": [
+    "validation",
+    "extrapolation"
+  ],
+  "final_test_used": false,
+  "fit_warning": "Slope standard errors only describe residuals around the selected log-linear model; they do not quantify asymptotic model uncertainty.",
+  "series": {
+    "candidate": [
+      {
+        "stage": "validation",
+        "n": 100001,
+        "mean_comparisons": 2565467.0,
+        "mean_moves": 2061610.5,
+        "mean_total_operations": 4627077.5,
+        "operations_per_n_log2_n": 2.785745542732714,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 2564218,
+            "moves": 2060126,
+            "total_operations": 4624344
+          },
+          {
+            "seed": 101,
+            "comparisons": 2566716,
+            "moves": 2063095,
+            "total_operations": 4629811
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 138951,
+        "mean_comparisons": 3702358.5,
+        "mean_moves": 2963974.5,
+        "mean_total_operations": 6666333.0,
+        "operations_per_n_log2_n": 2.8082126548537145,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 3704455,
+            "moves": 2966407,
+            "total_operations": 6670862
+          },
+          {
+            "seed": 101,
+            "comparisons": 3700262,
+            "moves": 2961542,
+            "total_operations": 6661804
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 193071,
+        "mean_comparisons": 5321940.0,
+        "mean_moves": 4293438.0,
+        "mean_total_operations": 9615378.0,
+        "operations_per_n_log2_n": 2.8363184668051633,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 5326878,
+            "moves": 4299751,
+            "total_operations": 9626629
+          },
+          {
+            "seed": 101,
+            "comparisons": 5317002,
+            "moves": 4287125,
+            "total_operations": 9604127
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 268271,
+        "mean_comparisons": 7636948.0,
+        "mean_moves": 6136223.5,
+        "mean_total_operations": 13773171.5,
+        "operations_per_n_log2_n": 2.8469781194640973,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 7632425,
+            "moves": 6130712,
+            "total_operations": 13763137
+          },
+          {
+            "seed": 101,
+            "comparisons": 7641471,
+            "moves": 6141735,
+            "total_operations": 13783206
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 372761,
+        "mean_comparisons": 10963613.5,
+        "mean_moves": 8823400.0,
+        "mean_total_operations": 19787013.5,
+        "operations_per_n_log2_n": 2.8680898239007684,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 10975182,
+            "moves": 8836951,
+            "total_operations": 19812133
+          },
+          {
+            "seed": 101,
+            "comparisons": 10952045,
+            "moves": 8809849,
+            "total_operations": 19761894
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 517949,
+        "mean_comparisons": 15675683.5,
+        "mean_moves": 12669341.0,
+        "mean_total_operations": 28345024.5,
+        "operations_per_n_log2_n": 2.88295256986145,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 15659843,
+            "moves": 12650319,
+            "total_operations": 28310162
+          },
+          {
+            "seed": 101,
+            "comparisons": 15691524,
+            "moves": 12688363,
+            "total_operations": 28379887
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 719687,
+        "mean_comparisons": 22486897.5,
+        "mean_moves": 18101031.0,
+        "mean_total_operations": 40587928.5,
+        "operations_per_n_log2_n": 2.898525198225477,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 22471849,
+            "moves": 18083294,
+            "total_operations": 40555143
+          },
+          {
+            "seed": 101,
+            "comparisons": 22501946,
+            "moves": 18118768,
+            "total_operations": 40620714
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 1000000,
+        "mean_comparisons": 32194911.0,
+        "mean_moves": 26065127.0,
+        "mean_total_operations": 58260038.0,
+        "operations_per_n_log2_n": 2.92300295284666,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 32169875,
+            "moves": 26036747,
+            "total_operations": 58206622
+          },
+          {
+            "seed": 101,
+            "comparisons": 32219947,
+            "moves": 26093507,
+            "total_operations": 58313454
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 1000001,
+        "mean_comparisons": 32219279.5,
+        "mean_moves": 26094218.5,
+        "mean_total_operations": 58313498.0,
+        "operations_per_n_log2_n": 2.9256819924640887,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 32224627,
+            "moves": 26099976,
+            "total_operations": 58324603
+          },
+          {
+            "seed": 201,
+            "comparisons": 32213932,
+            "moves": 26088461,
+            "total_operations": 58302393
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 2154436,
+        "mean_comparisons": 74039884.5,
+        "mean_moves": 59948624.5,
+        "mean_total_operations": 133988509.0,
+        "operations_per_n_log2_n": 2.95604711085952,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 74030317,
+            "moves": 59942907,
+            "total_operations": 133973224
+          },
+          {
+            "seed": 201,
+            "comparisons": 74049452,
+            "moves": 59954342,
+            "total_operations": 134003794
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 4641590,
+        "mean_comparisons": 169644065.5,
+        "mean_moves": 137380907.0,
+        "mean_total_operations": 307024972.5,
+        "operations_per_n_log2_n": 2.9868123853119215,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 169664322,
+            "moves": 137405461,
+            "total_operations": 307069783
+          },
+          {
+            "seed": 201,
+            "comparisons": 169623809,
+            "moves": 137356353,
+            "total_operations": 306980162
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 10000000,
+        "mean_comparisons": 387880786.5,
+        "mean_moves": 314548190.5,
+        "mean_total_operations": 702428977.0,
+        "operations_per_n_log2_n": 3.020745579838167,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 388017860,
+            "moves": 314711788,
+            "total_operations": 702729648
+          },
+          {
+            "seed": 201,
+            "comparisons": 387743713,
+            "moves": 314384593,
+            "total_operations": 702128306
+          }
+        ]
+      }
+    ],
+    "sedgewick": [
+      {
+        "stage": "validation",
+        "n": 100001,
+        "mean_comparisons": 2626089.0,
+        "mean_moves": 2077289.5,
+        "mean_total_operations": 4703378.5,
+        "operations_per_n_log2_n": 2.8316827829574662,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 2628361,
+            "moves": 2079913,
+            "total_operations": 4708274
+          },
+          {
+            "seed": 101,
+            "comparisons": 2623817,
+            "moves": 2074666,
+            "total_operations": 4698483
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 138951,
+        "mean_comparisons": 3771795.0,
+        "mean_moves": 2996661.0,
+        "mean_total_operations": 6768456.0,
+        "operations_per_n_log2_n": 2.851232273128353,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 3771303,
+            "moves": 2996673,
+            "total_operations": 6767976
+          },
+          {
+            "seed": 101,
+            "comparisons": 3772287,
+            "moves": 2996649,
+            "total_operations": 6768936
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 193071,
+        "mean_comparisons": 5429452.0,
+        "mean_moves": 4288253.0,
+        "mean_total_operations": 9717705.0,
+        "operations_per_n_log2_n": 2.866502611386143,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 5430451,
+            "moves": 4290076,
+            "total_operations": 9720527
+          },
+          {
+            "seed": 101,
+            "comparisons": 5428453,
+            "moves": 4286430,
+            "total_operations": 9714883
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 268271,
+        "mean_comparisons": 7786771.0,
+        "mean_moves": 6162255.5,
+        "mean_total_operations": 13949026.5,
+        "operations_per_n_log2_n": 2.883328159627204,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 7779780,
+            "moves": 6154013,
+            "total_operations": 13933793
+          },
+          {
+            "seed": 101,
+            "comparisons": 7793762,
+            "moves": 6170498,
+            "total_operations": 13964260
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 372761,
+        "mean_comparisons": 11170965.5,
+        "mean_moves": 8780023.0,
+        "mean_total_operations": 19950988.5,
+        "operations_per_n_log2_n": 2.8918576870436388,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 11161278,
+            "moves": 8767532,
+            "total_operations": 19928810
+          },
+          {
+            "seed": 101,
+            "comparisons": 11180653,
+            "moves": 8792514,
+            "total_operations": 19973167
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 517949,
+        "mean_comparisons": 16020208.0,
+        "mean_moves": 12660647.0,
+        "mean_total_operations": 28680855.0,
+        "operations_per_n_log2_n": 2.9171096545735433,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 16007708,
+            "moves": 12644431,
+            "total_operations": 28652139
+          },
+          {
+            "seed": 101,
+            "comparisons": 16032708,
+            "moves": 12676863,
+            "total_operations": 28709571
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 719687,
+        "mean_comparisons": 22929334.5,
+        "mean_moves": 18015913.0,
+        "mean_total_operations": 40945247.5,
+        "operations_per_n_log2_n": 2.9240425912923524,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 22916774,
+            "moves": 18000428,
+            "total_operations": 40917202
+          },
+          {
+            "seed": 101,
+            "comparisons": 22941895,
+            "moves": 18031398,
+            "total_operations": 40973293
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 1000000,
+        "mean_comparisons": 32805995.5,
+        "mean_moves": 25825288.5,
+        "mean_total_operations": 58631284.0,
+        "operations_per_n_log2_n": 2.941628981793509,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 32772006,
+            "moves": 25783678,
+            "total_operations": 58555684
+          },
+          {
+            "seed": 101,
+            "comparisons": 32839985,
+            "moves": 25866899,
+            "total_operations": 58706884
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 1000001,
+        "mean_comparisons": 32789302.5,
+        "mean_moves": 25809597.5,
+        "mean_total_operations": 58598900.0,
+        "operations_per_n_log2_n": 2.940001069875861,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 32799705,
+            "moves": 25819753,
+            "total_operations": 58619458
+          },
+          {
+            "seed": 201,
+            "comparisons": 32778900,
+            "moves": 25799442,
+            "total_operations": 58578342
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 2154436,
+        "mean_comparisons": 75560847.0,
+        "mean_moves": 59499410.0,
+        "mean_total_operations": 135060257.0,
+        "operations_per_n_log2_n": 2.9796919562467425,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 75540715,
+            "moves": 59467530,
+            "total_operations": 135008245
+          },
+          {
+            "seed": 201,
+            "comparisons": 75580979,
+            "moves": 59531290,
+            "total_operations": 135112269
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 4641590,
+        "mean_comparisons": 173201408.0,
+        "mean_moves": 135802637.0,
+        "mean_total_operations": 309004045.0,
+        "operations_per_n_log2_n": 3.0060652760663706,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 173140540,
+            "moves": 135719104,
+            "total_operations": 308859644
+          },
+          {
+            "seed": 201,
+            "comparisons": 173262276,
+            "moves": 135886170,
+            "total_operations": 309148446
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 10000000,
+        "mean_comparisons": 396310217.0,
+        "mean_moves": 310943988.5,
+        "mean_total_operations": 707254205.5,
+        "operations_per_n_log2_n": 3.041496129915608,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 397061803,
+            "moves": 311847582,
+            "total_operations": 708909385
+          },
+          {
+            "seed": 201,
+            "comparisons": 395558631,
+            "moves": 310040395,
+            "total_operations": 705599026
+          }
+        ]
+      }
+    ],
+    "tokuda": [
+      {
+        "stage": "validation",
+        "n": 100001,
+        "mean_comparisons": 2561674.5,
+        "mean_moves": 2009245.5,
+        "mean_total_operations": 4570920.0,
+        "operations_per_n_log2_n": 2.7519357556012007,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 2560881,
+            "moves": 2008659,
+            "total_operations": 4569540
+          },
+          {
+            "seed": 101,
+            "comparisons": 2562468,
+            "moves": 2009832,
+            "total_operations": 4572300
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 138951,
+        "mean_comparisons": 3686904.5,
+        "mean_moves": 2917692.5,
+        "mean_total_operations": 6604597.0,
+        "operations_per_n_log2_n": 2.782206180760679,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 3683590,
+            "moves": 2913601,
+            "total_operations": 6597191
+          },
+          {
+            "seed": 101,
+            "comparisons": 3690219,
+            "moves": 2921784,
+            "total_operations": 6612003
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 193071,
+        "mean_comparisons": 5294987.0,
+        "mean_moves": 4164529.0,
+        "mean_total_operations": 9459516.0,
+        "operations_per_n_log2_n": 2.790342711211032,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 5303585,
+            "moves": 4174276,
+            "total_operations": 9477861
+          },
+          {
+            "seed": 101,
+            "comparisons": 5286389,
+            "moves": 4154782,
+            "total_operations": 9441171
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 268271,
+        "mean_comparisons": 7608348.0,
+        "mean_moves": 6009337.0,
+        "mean_total_operations": 13617685.0,
+        "operations_per_n_log2_n": 2.8148383422623064,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 7602977,
+            "moves": 6004418,
+            "total_operations": 13607395
+          },
+          {
+            "seed": 101,
+            "comparisons": 7613719,
+            "moves": 6014256,
+            "total_operations": 13627975
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 372761,
+        "mean_comparisons": 10913300.5,
+        "mean_moves": 8628612.0,
+        "mean_total_operations": 19541912.5,
+        "operations_per_n_log2_n": 2.832562901966445,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 10917482,
+            "moves": 8633404,
+            "total_operations": 19550886
+          },
+          {
+            "seed": 101,
+            "comparisons": 10909119,
+            "moves": 8623820,
+            "total_operations": 19532939
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 517949,
+        "mean_comparisons": 15683650.0,
+        "mean_moves": 12385684.0,
+        "mean_total_operations": 28069334.0,
+        "operations_per_n_log2_n": 2.85491228238661,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 15688900,
+            "moves": 12391291,
+            "total_operations": 28080191
+          },
+          {
+            "seed": 101,
+            "comparisons": 15678400,
+            "moves": 12380077,
+            "total_operations": 28058477
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 719687,
+        "mean_comparisons": 22381205.0,
+        "mean_moves": 17771157.5,
+        "mean_total_operations": 40152362.5,
+        "operations_per_n_log2_n": 2.8674199146313595,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 22393395,
+            "moves": 17785923,
+            "total_operations": 40179318
+          },
+          {
+            "seed": 101,
+            "comparisons": 22369015,
+            "moves": 17756392,
+            "total_operations": 40125407
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 1000000,
+        "mean_comparisons": 32036363.0,
+        "mean_moves": 25319549.5,
+        "mean_total_operations": 57355912.5,
+        "operations_per_n_log2_n": 2.8776414735725826,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 32037958,
+            "moves": 25324285,
+            "total_operations": 57362243
+          },
+          {
+            "seed": 101,
+            "comparisons": 32034768,
+            "moves": 25314814,
+            "total_operations": 57349582
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 1000001,
+        "mean_comparisons": 32067912.0,
+        "mean_moves": 25355697.0,
+        "mean_total_operations": 57423609.0,
+        "operations_per_n_log2_n": 2.8810348299393524,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 32068931,
+            "moves": 25356931,
+            "total_operations": 57425862
+          },
+          {
+            "seed": 201,
+            "comparisons": 32066893,
+            "moves": 25354463,
+            "total_operations": 57421356
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 2154436,
+        "mean_comparisons": 73653484.0,
+        "mean_moves": 58331617.0,
+        "mean_total_operations": 131985101.0,
+        "operations_per_n_log2_n": 2.9118480338306623,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 73647325,
+            "moves": 58321190,
+            "total_operations": 131968515
+          },
+          {
+            "seed": 201,
+            "comparisons": 73659643,
+            "moves": 58342044,
+            "total_operations": 132001687
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 4641590,
+        "mean_comparisons": 168792124.5,
+        "mean_moves": 134015213.0,
+        "mean_total_operations": 302807337.5,
+        "operations_per_n_log2_n": 2.9457822230024857,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 168888826,
+            "moves": 134129459,
+            "total_operations": 303018285
+          },
+          {
+            "seed": 201,
+            "comparisons": 168695423,
+            "moves": 133900967,
+            "total_operations": 302596390
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 10000000,
+        "mean_comparisons": 385024426.0,
+        "mean_moves": 306293462.5,
+        "mean_total_operations": 691317888.5,
+        "operations_per_n_log2_n": 2.9729631383778035,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 385025831,
+            "moves": 306291478,
+            "total_operations": 691317309
+          },
+          {
+            "seed": 201,
+            "comparisons": 385023021,
+            "moves": 306295447,
+            "total_operations": 691318468
+          }
+        ]
+      }
+    ],
+    "ciura": [
+      {
+        "stage": "validation",
+        "n": 100001,
+        "mean_comparisons": 2558158.0,
+        "mean_moves": 2062332.0,
+        "mean_total_operations": 4620490.0,
+        "operations_per_n_log2_n": 2.7817795190897656,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 2554391,
+            "moves": 2058372,
+            "total_operations": 4612763
+          },
+          {
+            "seed": 101,
+            "comparisons": 2561925,
+            "moves": 2066292,
+            "total_operations": 4628217
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 138951,
+        "mean_comparisons": 3690767.5,
+        "mean_moves": 2957981.0,
+        "mean_total_operations": 6648748.5,
+        "operations_per_n_log2_n": 2.800805131792794,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 3695605,
+            "moves": 2963782,
+            "total_operations": 6659387
+          },
+          {
+            "seed": 101,
+            "comparisons": 3685930,
+            "moves": 2952180,
+            "total_operations": 6638110
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 193071,
+        "mean_comparisons": 5296052.5,
+        "mean_moves": 4267715.0,
+        "mean_total_operations": 9563767.5,
+        "operations_per_n_log2_n": 2.8210945396510723,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 5288088,
+            "moves": 4258857,
+            "total_operations": 9546945
+          },
+          {
+            "seed": 101,
+            "comparisons": 5304017,
+            "moves": 4276573,
+            "total_operations": 9580590
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 268271,
+        "mean_comparisons": 7607712.0,
+        "mean_moves": 6104259.0,
+        "mean_total_operations": 13711971.0,
+        "operations_per_n_log2_n": 2.834327693641674,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 7604353,
+            "moves": 6100499,
+            "total_operations": 13704852
+          },
+          {
+            "seed": 101,
+            "comparisons": 7611071,
+            "moves": 6108019,
+            "total_operations": 13719090
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 372761,
+        "mean_comparisons": 10907090.5,
+        "mean_moves": 8756113.5,
+        "mean_total_operations": 19663204.0,
+        "operations_per_n_log2_n": 2.850143873287643,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 10904846,
+            "moves": 8753503,
+            "total_operations": 19658349
+          },
+          {
+            "seed": 101,
+            "comparisons": 10909335,
+            "moves": 8758724,
+            "total_operations": 19668059
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 517949,
+        "mean_comparisons": 15650035.0,
+        "mean_moves": 12627881.0,
+        "mean_total_operations": 28277916.0,
+        "operations_per_n_log2_n": 2.8761270113746495,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 15660113,
+            "moves": 12638735,
+            "total_operations": 28298848
+          },
+          {
+            "seed": 101,
+            "comparisons": 15639957,
+            "moves": 12617027,
+            "total_operations": 28256984
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 719687,
+        "mean_comparisons": 22413718.5,
+        "mean_moves": 17991659.0,
+        "mean_total_operations": 40405377.5,
+        "operations_per_n_log2_n": 2.885488596136724,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 22395331,
+            "moves": 17969310,
+            "total_operations": 40364641
+          },
+          {
+            "seed": 101,
+            "comparisons": 22432106,
+            "moves": 18014008,
+            "total_operations": 40446114
+          }
+        ]
+      },
+      {
+        "stage": "validation",
+        "n": 1000000,
+        "mean_comparisons": 32029013.5,
+        "mean_moves": 25853698.0,
+        "mean_total_operations": 57882711.5,
+        "operations_per_n_log2_n": 2.9040718551071203,
+        "seed_costs": [
+          {
+            "seed": 100,
+            "comparisons": 31984609,
+            "moves": 25803234,
+            "total_operations": 57787843
+          },
+          {
+            "seed": 101,
+            "comparisons": 32073418,
+            "moves": 25904162,
+            "total_operations": 57977580
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 1000001,
+        "mean_comparisons": 32058951.5,
+        "mean_moves": 25889225.5,
+        "mean_total_operations": 57948177.0,
+        "operations_per_n_log2_n": 2.907353250271861,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 32061343,
+            "moves": 25892941,
+            "total_operations": 57954284
+          },
+          {
+            "seed": 201,
+            "comparisons": 32056560,
+            "moves": 25885510,
+            "total_operations": 57942070
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 2154436,
+        "mean_comparisons": 73682939.5,
+        "mean_moves": 59478918.5,
+        "mean_total_operations": 133161858.0,
+        "operations_per_n_log2_n": 2.937809581996212,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 73680657,
+            "moves": 59477955,
+            "total_operations": 133158612
+          },
+          {
+            "seed": 201,
+            "comparisons": 73685222,
+            "moves": 59479882,
+            "total_operations": 133165104
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 4641590,
+        "mean_comparisons": 168753685.0,
+        "mean_moves": 136164047.0,
+        "mean_total_operations": 304917732.0,
+        "operations_per_n_log2_n": 2.9663126455904862,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 168728267,
+            "moves": 136131156,
+            "total_operations": 304859423
+          },
+          {
+            "seed": 201,
+            "comparisons": 168779103,
+            "moves": 136196938,
+            "total_operations": 304976041
+          }
+        ]
+      },
+      {
+        "stage": "extrapolation",
+        "n": 10000000,
+        "mean_comparisons": 385367234.0,
+        "mean_moves": 310877194.0,
+        "mean_total_operations": 696244428.0,
+        "operations_per_n_log2_n": 2.9941493691652656,
+        "seed_costs": [
+          {
+            "seed": 200,
+            "comparisons": 385363261,
+            "moves": 310859823,
+            "total_operations": 696223084
+          },
+          {
+            "seed": 201,
+            "comparisons": 385371207,
+            "moves": 310894565,
+            "total_operations": 696265772
+          }
+        ]
+      }
+    ]
+  },
+  "fits": {
+    "candidate": {
+      "validation_and_extrapolation": {
+        "power_law": {
+          "observations": 12,
+          "intercept": 2.8049435859936818,
+          "slope": 1.090605041713685,
+          "slope_residual_se": 0.0017681667199446673,
+          "log_rmse": 0.007506604770089502,
+          "beta": 1.090605041713685,
+          "coefficient": 16.526143573796617,
+          "frobenius_window_equivalent_m": 11.036913411066394
+        },
+        "n_log_n_power": {
+          "observations": 12,
+          "intercept": 0.8113310085802805,
+          "slope": 1.238306569116037,
+          "slope_residual_se": 0.005303090704766463,
+          "log_rmse": 0.0016502858326357481,
+          "gamma": 1.238306569116037,
+          "coefficient": 2.2509019635568706
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1100601289917955
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.113569330119616
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.092476676629123
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.101427169790757
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.0926807880761882
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0914440462620394
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0988232977762415
+          },
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.083895935198514
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0803189423532389
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.078286506711686
+          }
+        ]
+      },
+      "validation": {
+        "power_law": {
+          "observations": 8,
+          "intercept": 2.6981615669615717,
+          "slope": 1.0990778568007755,
+          "slope_residual_se": 0.0014146471396044018,
+          "log_rmse": 0.002611674813448309,
+          "beta": 1.0990778568007755,
+          "coefficient": 14.852401464591253,
+          "frobenius_window_equivalent_m": 10.093072582411498
+        },
+        "n_log_n_power": {
+          "observations": 8,
+          "intercept": 0.7758416961114394,
+          "slope": 1.252289469398384,
+          "slope_residual_se": 0.00865399574055378,
+          "log_rmse": 0.0012646279217781093,
+          "gamma": 1.252289469398384,
+          "coefficient": 2.1724198752327206
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1100601289917955
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.113569330119616
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.092476676629123
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.101427169790757
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.0926807880761882
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0914440462620394
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0988232977762415
+          }
+        ]
+      },
+      "extrapolation": {
+        "power_law": {
+          "observations": 4,
+          "intercept": 2.9509192880654744,
+          "slope": 1.0807823093186237,
+          "slope_residual_se": 0.0008936277123340958,
+          "log_rmse": 0.0010844783256077832,
+          "beta": 1.0807823093186237,
+          "coefficient": 19.123525679078377,
+          "frobenius_window_equivalent_m": 12.378947921082244
+        },
+        "n_log_n_power": {
+          "observations": 4,
+          "intercept": 0.8969082236803945,
+          "slope": 1.2066711959240646,
+          "slope_residual_se": 0.0064560402929471,
+          "log_rmse": 0.000524564028631189,
+          "gamma": 1.2066711959240646,
+          "coefficient": 2.4520103121686496
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.083895935198514
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0803189423532389
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.078286506711686
+          }
+        ]
+      }
+    },
+    "sedgewick": {
+      "validation_and_extrapolation": {
+        "power_law": {
+          "observations": 12,
+          "intercept": 2.842098374216384,
+          "slope": 1.0885591604370912,
+          "slope_residual_se": 0.0013998991656092293,
+          "log_rmse": 0.005943155493015616,
+          "beta": 1.0885591604370912,
+          "coefficient": 17.15171852646332,
+          "frobenius_window_equivalent_m": 11.291886633346742
+        },
+        "n_log_n_power": {
+          "observations": 12,
+          "intercept": 0.895372926195062,
+          "slope": 1.2096237355828847,
+          "slope_residual_se": 0.003214830338579255,
+          "log_rmse": 0.0010004333807295436,
+          "gamma": 1.2096237355828847,
+          "coefficient": 2.4482486352877952
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1065562845402261
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.099532357556989
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.0988648617591457
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0879467006419554
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1033984565857695
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.082283512941316
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0914874499980727
+          },
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0879148799674734
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0783102795482802
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.0788344751662806
+          }
+        ]
+      },
+      "validation": {
+        "power_law": {
+          "observations": 8,
+          "intercept": 2.7566506109028204,
+          "slope": 1.095347539772201,
+          "slope_residual_se": 0.001205228988001754,
+          "log_rmse": 0.002225053940505759,
+          "beta": 1.095347539772201,
+          "coefficient": 15.747011652226048,
+          "frobenius_window_equivalent_m": 10.487947590353604
+        },
+        "n_log_n_power": {
+          "observations": 8,
+          "intercept": 0.9069715107402354,
+          "slope": 1.205035970146437,
+          "slope_residual_se": 0.006877942733963074,
+          "log_rmse": 0.0010050892889859422,
+          "gamma": 1.205035970146437,
+          "coefficient": 2.4768101705715075
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1065562845402261
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.099532357556989
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.0988648617591457
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0879467006419554
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1033984565857695
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.082283512941316
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0914874499980727
+          }
+        ]
+      },
+      "extrapolation": {
+        "power_law": {
+          "observations": 4,
+          "intercept": 2.948969080008059,
+          "slope": 1.0813489180914537,
+          "slope_residual_se": 0.001604464441130964,
+          "log_rmse": 0.0019471272954037582,
+          "beta": 1.0813489180914537,
+          "coefficient": 19.086267167945962,
+          "frobenius_window_equivalent_m": 12.29272648562805
+        },
+        "n_log_n_power": {
+          "observations": 4,
+          "intercept": 0.8798212393583604,
+          "slope": 1.2154047274391322,
+          "slope_residual_se": 0.010386238860450408,
+          "log_rmse": 0.000843899209383128,
+          "gamma": 1.2154047274391322,
+          "coefficient": 2.4104687709570594
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0879148799674734
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0783102795482802
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.0788344751662806
+          }
+        ]
+      }
+    },
+    "tokuda": {
+      "validation_and_extrapolation": {
+        "power_law": {
+          "observations": 12,
+          "intercept": 2.8039451284566965,
+          "slope": 1.089698500392055,
+          "slope_residual_se": 0.00179816303886018,
+          "log_rmse": 0.007633951647573634,
+          "beta": 1.089698500392055,
+          "coefficient": 16.509651156047592,
+          "frobenius_window_equivalent_m": 11.148458398180479
+        },
+        "n_log_n_power": {
+          "observations": 12,
+          "intercept": 0.8300102250740804,
+          "slope": 1.2260206434511118,
+          "slope_residual_se": 0.00579612412106586,
+          "log_rmse": 0.0018037144853275805,
+          "gamma": 1.2260206434511118,
+          "coefficient": 2.293342189738078
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1188974231045874
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.0921717111460818
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.1076441473478373
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0980495590951076
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1008600239378385
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0883566532186288
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0840757065922408
+          },
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0843038294188625
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0819249593786238
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.075534552759253
+          }
+        ]
+      },
+      "validation": {
+        "power_law": {
+          "observations": 8,
+          "intercept": 2.6918111404280634,
+          "slope": 1.0986132075121364,
+          "slope_residual_se": 0.0016585012156290029,
+          "log_rmse": 0.003061870152399234,
+          "beta": 1.0986132075121364,
+          "coefficient": 14.758381230508602,
+          "frobenius_window_equivalent_m": 10.140629487961123
+        },
+        "n_log_n_power": {
+          "observations": 8,
+          "intercept": 0.7780079251543066,
+          "slope": 1.2466130592347335,
+          "slope_residual_se": 0.010730404714756099,
+          "log_rmse": 0.0015680582497480723,
+          "gamma": 1.2466130592347335,
+          "coefficient": 2.177130935034795
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.1188974231045874
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.0921717111460818
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.1076441473478373
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0980495590951076
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1008600239378385
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0883566532186288
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0840757065922408
+          }
+        ]
+      },
+      "extrapolation": {
+        "power_law": {
+          "observations": 4,
+          "intercept": 2.936774454185091,
+          "slope": 1.0807214980577349,
+          "slope_residual_se": 0.0014152623864697664,
+          "log_rmse": 0.0017175176664626446,
+          "beta": 1.0807214980577349,
+          "coefficient": 18.85493067924423,
+          "frobenius_window_equivalent_m": 12.388273558609685
+        },
+        "n_log_n_power": {
+          "observations": 4,
+          "intercept": 0.883665263660641,
+          "slope": 1.2060011149134546,
+          "slope_residual_se": 0.004819934448923616,
+          "log_rmse": 0.0003916277032886138,
+          "gamma": 1.2060011149134546,
+          "coefficient": 2.4197525035075054
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0843038294188625
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.0819249593786238
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.075534552759253
+          }
+        ]
+      }
+    },
+    "ciura": {
+      "validation_and_extrapolation": {
+        "power_law": {
+          "observations": 12,
+          "intercept": 2.8165302336943654,
+          "slope": 1.0893592533064473,
+          "slope_residual_se": 0.0017266055805642622,
+          "log_rmse": 0.007330160409043577,
+          "beta": 1.0893592533064473,
+          "coefficient": 16.718739794846105,
+          "frobenius_window_equivalent_m": 11.1907828568197
+        },
+        "n_log_n_power": {
+          "observations": 12,
+          "intercept": 0.8503815232221625,
+          "slope": 1.2212600759096812,
+          "slope_residual_se": 0.004598617794352638,
+          "log_rmse": 0.001431058644519454,
+          "gamma": 1.2212600759096812,
+          "coefficient": 2.340539651832779
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.106361616721238
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.1052374512074077
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.0952996673082545
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0958838822404509
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1045565385656473
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0849460548045504
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0927740162182682
+          },
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0840207582890924
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.079409005451318
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.0757375075029867
+          }
+        ]
+      },
+      "validation": {
+        "power_law": {
+          "observations": 8,
+          "intercept": 2.7112153807724138,
+          "slope": 1.0977159057755785,
+          "slope_residual_se": 0.0011423407949119958,
+          "log_rmse": 0.0021089518360603177,
+          "beta": 1.0977159057755785,
+          "coefficient": 15.047552912108202,
+          "frobenius_window_equivalent_m": 10.233748457458633
+        },
+        "n_log_n_power": {
+          "observations": 8,
+          "intercept": 0.8157489316565605,
+          "slope": 1.2349061836071134,
+          "slope_residual_se": 0.006324381508752646,
+          "log_rmse": 0.0009241961382608634,
+          "gamma": 1.2349061836071134,
+          "coefficient": 2.260868274270921
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 100001,
+            "right_n": 138951,
+            "beta": 1.106361616721238
+          },
+          {
+            "left_n": 138951,
+            "right_n": 193071,
+            "beta": 1.1052374512074077
+          },
+          {
+            "left_n": 193071,
+            "right_n": 268271,
+            "beta": 1.0952996673082545
+          },
+          {
+            "left_n": 268271,
+            "right_n": 372761,
+            "beta": 1.0958838822404509
+          },
+          {
+            "left_n": 372761,
+            "right_n": 517949,
+            "beta": 1.1045565385656473
+          },
+          {
+            "left_n": 517949,
+            "right_n": 719687,
+            "beta": 1.0849460548045504
+          },
+          {
+            "left_n": 719687,
+            "right_n": 1000000,
+            "beta": 1.0927740162182682
+          }
+        ]
+      },
+      "extrapolation": {
+        "power_law": {
+          "observations": 4,
+          "intercept": 2.960200542407904,
+          "slope": 1.0796910816205356,
+          "slope_residual_se": 0.0013113834401918996,
+          "log_rmse": 0.0015914534630248663,
+          "beta": 1.0796910816205356,
+          "coefficient": 19.30184220530796,
+          "frobenius_window_equivalent_m": 12.548455607136717
+        },
+        "n_log_n_power": {
+          "observations": 4,
+          "intercept": 0.9333666041346573,
+          "slope": 1.1905815823217956,
+          "slope_residual_se": 0.0005957604862581301,
+          "log_rmse": 4.8406531959264145e-05,
+          "gamma": 1.1905815823217956,
+          "coefficient": 2.5430562459195705
+        },
+        "local_power_slopes": [
+          {
+            "left_n": 1000001,
+            "right_n": 2154436,
+            "beta": 1.0840207582890924
+          },
+          {
+            "left_n": 2154436,
+            "right_n": 4641590,
+            "beta": 1.079409005451318
+          },
+          {
+            "left_n": 4641590,
+            "right_n": 10000000,
+            "beta": 1.0757375075029867
+          }
+        ]
+      }
+    }
+  }
+}

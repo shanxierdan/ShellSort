@@ -1,0 +1,97 @@
+% Full manuscript.  Add author metadata before an arXiv release.
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\papertitle}{A New Gap Sequence for Shellsort: RL-Driven Algorithm Discovery Beyond $N^{4/3}$}
+\newcommand{\bigO}{\mathcal{O}}
+\newcommand{\littleO}{o}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\polylog}{\operatorname{polylog}}
+\newcommand{\cost}{\operatorname{cost}}
+\newcommand{\cond}{\operatorname{cond}}
+\newcommand{\goodarrow}[1]{\textcolor{green!45!black}{\(\downarrow\)\,#1}}
+\newcommand{\badarrow}[1]{\textcolor{red!70!black}{\(\uparrow\)\,#1}}
+
+\hypersetup{
+  pdftitle={A New Gap Sequence for Shellsort: RL-Driven Algorithm Discovery Beyond N to the 4/3},
+  pdfauthor={Bo Liu},
+  pdfkeywords={Shellsort, gap sequences, reinforcement learning, program search, numerical semigroups}
+}
+
+\begin{document}
+
+% The title-page layout is also convenient for the full arXiv version.
+% Disable PDF page anchors while the unnumbered title page is active; otherwise
+% resetting the first content page to 1 creates a duplicate destination.
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+  \centering
+  \vspace*{0.10\textheight}
+  {\LARGE\bfseries \papertitle\par}
+  \vspace{1.5em}
+  {\large Bo Liu\par}
+  \vspace{0.35em}
+  {\normalsize The Chinese University of Hong Kong, Shenzhen\par}
+  \vspace{0.25em}
+  {\small\href{mailto:226085017@link.cuhk.edu.cn}%
+    {\nolinkurl{226085017@link.cuhk.edu.cn}}\par}
+  \vspace{1.8em}
+
+  \begin{minipage}{0.86\textwidth}
+    \begin{abstract}
+      \input{abstract}
+    \end{abstract}
+
+    \vspace{1em}
+    \noindent\textbf{Keywords:}
+    Shellsort, increment sequences, reinforcement learning, program search,
+    numerical semigroups, Frobenius problem
+  \end{minipage}
+\end{titlepage}
+
+% The STOC presentation-page allowance starts after the title page.
+\setcounter{page}{1}
+\hypersetup{pageanchor=true}
+
+\input{introduction}
+\input{method}
+\input{results}
+\input{theory_summary}
+\input{conclusion}
+
+\clearpage
+\appendix
+\input{theory}
+
+\section*{AI Methodology}
+OpenAI Codex was used to assist with implementing the experimental code and
+with language editing and presentation of the manuscript.  The research idea
+is the author's own.  The author reviewed the AI-assisted code and text and
+takes full responsibility for the correctness, originality, and claims of the
+submission.
+
+\bibliographystyle{alpha}
+\bibliography{references}
+
+\end{document}

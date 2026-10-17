@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "shellsort-discovery"
+version = "0.1.0"
+description = "Execution-trace-guided discovery of executable Shellsort gap-generator programs"
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.26", "PyYAML>=6.0"]
+
+[project.optional-dependencies]
+train = ["torch>=2.2"]
+dev = ["pytest>=8.0"]
+perf = ["numba>=0.61"]
+
+[tool.setuptools]
+packages = ["core", "model"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

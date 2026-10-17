@@ -1,0 +1,1800 @@
+{
+  "schema_version": 3,
+  "selection_stage": "validation",
+  "selection_rule": {
+    "per_seed": 1,
+    "objective": "prefer zero censored tasks, then minimize worst log ratio over Sedgewick, Tokuda and Ciura",
+    "deduplicate_identical_program_hashes": true
+  },
+  "source_validation_signatures": {
+    "0": "c107446c83c39df3ffe4b862e035a3265989377a1c5d1b274d0e0fa94730f805",
+    "1": "8897ae0e01b51622e7148ff0f975bec4cb3b8c6bb33f5cd714352d4ebe20b357",
+    "2": "b36f9780281fd7bc80b34db2b832ca7aa78d511e70953db4759f58428e5d3d21",
+    "3": "7def157d647aee6b955cb14839fde3276d083a39ced9e9d79a62241b29ca36e0",
+    "4": "06c1b89a7befa639dd820305d44ea85274d2a61aca4bc53c2c755d2853d78b09"
+  },
+  "validation_selected_program_hashes": [
+    "eaec32003aaa9560ab9ec92df9925dcb1dd42723f8ce90fdd1a7573dc26864db",
+    "da48fdd60fe6b029e62884920b893f1397b4da8a31d8121ddea9e12e11cc89be",
+    "181fa3905ec327b0280be0a5ad266aaa9ab3520acc78024289dcc814612d3942",
+    "0c50644bd3603f2c3ccd6f77fd57220f13804ca93d8cdc96bdc15bee19bf58b1",
+    "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c"
+  ],
+  "candidates": [
+    {
+      "schema_version": 3,
+      "program_hash": "eaec32003aaa9560ab9ec92df9925dcb1dd42723f8ce90fdd1a7573dc26864db",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "program": {
+        "schema_version": 3,
+        "type": "bounded_imperative",
+        "initializers": [
+          {
+            "op": "mul",
+            "value": null,
+            "args": [
+              {
+                "op": "var",
+                "value": "n",
+                "args": []
+              },
+              {
+                "op": "const",
+                "value": 1.8538862370678295,
+                "args": []
+              }
+            ]
+          }
+        ],
+        "body": [
+          {
+            "kind": "emit",
+            "target": 0,
+            "expression": {
+              "op": "var",
+              "value": "r0",
+              "args": []
+            },
+            "predicate": null
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "var",
+              "value": "last",
+              "args": []
+            },
+            "predicate": {
+              "op": "lt",
+              "value": null,
+              "args": [
+                {
+                  "op": "const",
+                  "value": 5.686905504527468,
+                  "args": []
+                },
+                {
+                  "op": "var",
+                  "value": "k",
+                  "args": []
+                }
+              ]
+            }
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "const",
+                  "value": 2.3522066113130036,
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          }
+        ],
+        "fuel_base": 2,
+        "fuel_log": 1,
+        "max_outputs": 256
+      },
+      "complexity": [
+        14,
+        2
+      ],
+      "sequences": [
+        {
+          "schema_version": 2,
+          "n": 32,
+          "gaps": [
+            25,
+            10,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 55,
+          "gaps": [
+            43,
+            18,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 94,
+          "gaps": [
+            74,
+            31,
+            13,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 160,
+          "gaps": [
+            126,
+            53,
+            22,
+            9,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 274,
+          "gaps": [
+            215,
+            91,
+            39,
+            16,
+            7,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 468,
+          "gaps": [
+            368,
+            156,
+            66,
+            28,
+            12,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 800,
+          "gaps": [
+            630,
+            268,
+            113,
+            48,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 1368,
+          "gaps": [
+            1078,
+            458,
+            194,
+            82,
+            35,
+            14,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 2339,
+          "gaps": [
+            1843,
+            783,
+            333,
+            141,
+            60,
+            25,
+            10,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 4000,
+          "gaps": [
+            3152,
+            1340,
+            569,
+            242,
+            102,
+            43,
+            18,
+            7,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 6840,
+          "gaps": [
+            5390,
+            2291,
+            974,
+            414,
+            176,
+            74,
+            31,
+            13,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 11696,
+          "gaps": [
+            9218,
+            3918,
+            1666,
+            708,
+            301,
+            127,
+            53,
+            22,
+            9,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 20000,
+          "gaps": [
+            15762,
+            6701,
+            2848,
+            1211,
+            514,
+            218,
+            92,
+            39,
+            16,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 34200,
+          "gaps": [
+            26954,
+            11459,
+            4871,
+            2071,
+            880,
+            374,
+            158,
+            67,
+            28,
+            11,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 58480,
+          "gaps": [
+            46090,
+            19594,
+            8330,
+            3541,
+            1505,
+            639,
+            271,
+            115,
+            48,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 100000,
+          "gaps": [
+            78814,
+            33506,
+            14244,
+            6055,
+            2574,
+            1094,
+            465,
+            197,
+            83,
+            35,
+            14,
+            5,
+            2,
+            1
+          ]
+        }
+      ],
+      "score": {
+        "family_hash": "c2ff3c6a039c095ee3b6de9583fdc2bd11d13361f2645d8b4f1927a78c70e7a8",
+        "panel_hash": "a3c7354337e1a296c5831c8c14afe0dd666a7327cdafdc38e0069ed0e6d1763b",
+        "comparisons": 48656077,
+        "moves": 33790536,
+        "passes": 1450,
+        "task_count": 160,
+        "mean_log_normalized_total": 0.6020528988042883
+      },
+      "source_seeds": [
+        0
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": -0.0007886998287933197,
+        "mean_log_ratio": -0.003212126531497842,
+        "ratios": {
+          "sedgewick": -0.007263713028582301,
+          "tokuda": -0.0007886998287933197,
+          "ciura": -0.0015839667371179058
+        }
+      }
+    },
+    {
+      "schema_version": 3,
+      "program_hash": "da48fdd60fe6b029e62884920b893f1397b4da8a31d8121ddea9e12e11cc89be",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "program": {
+        "schema_version": 3,
+        "type": "bounded_imperative",
+        "initializers": [
+          {
+            "op": "div",
+            "value": null,
+            "args": [
+              {
+                "op": "var",
+                "value": "n",
+                "args": []
+              },
+              {
+                "op": "const",
+                "value": 1.5719606021900392,
+                "args": []
+              }
+            ]
+          },
+          {
+            "op": "var",
+            "value": "t",
+            "args": []
+          }
+        ],
+        "body": [
+          {
+            "kind": "emit",
+            "target": 0,
+            "expression": {
+              "op": "add",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "div",
+                  "value": null,
+                  "args": [
+                    {
+                      "op": "const",
+                      "value": 0.20921356039927455,
+                      "args": []
+                    },
+                    {
+                      "op": "var",
+                      "value": "r0",
+                      "args": []
+                    }
+                  ]
+                }
+              ]
+            },
+            "predicate": {
+              "op": "le",
+              "value": null,
+              "args": [
+                {
+                  "op": "const",
+                  "value": 2.898179122909141,
+                  "args": []
+                },
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                }
+              ]
+            }
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "const",
+                  "value": 2.3164033636410832,
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          }
+        ],
+        "fuel_base": 0,
+        "fuel_log": 4,
+        "max_outputs": 256
+      },
+      "complexity": [
+        17,
+        3
+      ],
+      "sequences": [
+        {
+          "schema_version": 2,
+          "n": 32,
+          "gaps": [
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 55,
+          "gaps": [
+            34,
+            15,
+            6,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 94,
+          "gaps": [
+            59,
+            25,
+            11,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 160,
+          "gaps": [
+            101,
+            43,
+            18,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 274,
+          "gaps": [
+            174,
+            75,
+            32,
+            14,
+            6,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 468,
+          "gaps": [
+            297,
+            128,
+            55,
+            23,
+            10,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 800,
+          "gaps": [
+            508,
+            219,
+            94,
+            40,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 1368,
+          "gaps": [
+            870,
+            375,
+            162,
+            70,
+            30,
+            13,
+            5,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 2339,
+          "gaps": [
+            1487,
+            642,
+            277,
+            119,
+            51,
+            22,
+            9,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 4000,
+          "gaps": [
+            2544,
+            1098,
+            474,
+            204,
+            88,
+            38,
+            16,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 6840,
+          "gaps": [
+            4351,
+            1878,
+            810,
+            350,
+            151,
+            65,
+            28,
+            12,
+            5,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 11696,
+          "gaps": [
+            7440,
+            3212,
+            1386,
+            598,
+            258,
+            111,
+            48,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 20000,
+          "gaps": [
+            12722,
+            5492,
+            2371,
+            1023,
+            441,
+            190,
+            82,
+            35,
+            15,
+            6,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 34200,
+          "gaps": [
+            21756,
+            9392,
+            4054,
+            1750,
+            755,
+            326,
+            140,
+            60,
+            26,
+            11,
+            4,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 58480,
+          "gaps": [
+            37201,
+            16060,
+            6933,
+            2993,
+            1292,
+            557,
+            240,
+            103,
+            44,
+            19,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 100000,
+          "gaps": [
+            63614,
+            27462,
+            11855,
+            5118,
+            2209,
+            953,
+            411,
+            177,
+            76,
+            33,
+            14,
+            6,
+            1
+          ]
+        }
+      ],
+      "score": {
+        "family_hash": "257cfdc5196e389a83579e29f640cb3563276440c2f59f7ab7f42749c919694d",
+        "panel_hash": "a3c7354337e1a296c5831c8c14afe0dd666a7327cdafdc38e0069ed0e6d1763b",
+        "comparisons": 48168997,
+        "moves": 33923662,
+        "passes": 1370,
+        "task_count": 160,
+        "mean_log_normalized_total": 0.6000272854984521
+      },
+      "source_seeds": [
+        1
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": -0.0031946737114028094,
+        "mean_log_ratio": -0.005618100414107332,
+        "ratios": {
+          "sedgewick": -0.009669686911191789,
+          "tokuda": -0.0031946737114028094,
+          "ciura": -0.003989940619727396
+        }
+      }
+    },
+    {
+      "schema_version": 3,
+      "program_hash": "181fa3905ec327b0280be0a5ad266aaa9ab3520acc78024289dcc814612d3942",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "program": {
+        "schema_version": 3,
+        "type": "bounded_imperative",
+        "initializers": [
+          {
+            "op": "mul",
+            "value": null,
+            "args": [
+              {
+                "op": "const",
+                "value": 2.1119597805810253,
+                "args": []
+              },
+              {
+                "op": "pow",
+                "value": null,
+                "args": [
+                  {
+                    "op": "pow",
+                    "value": null,
+                    "args": [
+                      {
+                        "op": "const",
+                        "value": 4.727458362529368,
+                        "args": []
+                      },
+                      {
+                        "op": "const",
+                        "value": 2.840289335730942,
+                        "args": []
+                      }
+                    ]
+                  },
+                  {
+                    "op": "const",
+                    "value": 4.326007566874442,
+                    "args": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "op": "const",
+            "value": 3.2378967095794033,
+            "args": []
+          }
+        ],
+        "body": [
+          {
+            "kind": "emit",
+            "target": 0,
+            "expression": {
+              "op": "mul",
+              "value": null,
+              "args": [
+                {
+                  "op": "const",
+                  "value": 3.0034891326900137,
+                  "args": []
+                },
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "const",
+                  "value": 2.361926343881306,
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          }
+        ],
+        "fuel_base": 1,
+        "fuel_log": 2,
+        "max_outputs": 256
+      },
+      "complexity": [
+        16,
+        4
+      ],
+      "sequences": [
+        {
+          "schema_version": 2,
+          "n": 32,
+          "gaps": [
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 55,
+          "gaps": [
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 94,
+          "gaps": [
+            42,
+            17,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 160,
+          "gaps": [
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 274,
+          "gaps": [
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 468,
+          "gaps": [
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 800,
+          "gaps": [
+            555,
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 1368,
+          "gaps": [
+            1040,
+            440,
+            186,
+            78,
+            33,
+            14,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 2339,
+          "gaps": [
+            1287,
+            545,
+            230,
+            97,
+            41,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 4000,
+          "gaps": [
+            3765,
+            1594,
+            674,
+            285,
+            120,
+            51,
+            21,
+            9,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 6840,
+          "gaps": [
+            4661,
+            1973,
+            835,
+            353,
+            149,
+            63,
+            26,
+            11,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 11696,
+          "gaps": [
+            5770,
+            2443,
+            1034,
+            437,
+            185,
+            78,
+            33,
+            14,
+            5,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 20000,
+          "gaps": [
+            16874,
+            7144,
+            3024,
+            1280,
+            542,
+            229,
+            97,
+            41,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 34200,
+          "gaps": [
+            17341,
+            7341,
+            3108,
+            1316,
+            557,
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 58480,
+          "gaps": [
+            40958,
+            17341,
+            7341,
+            3108,
+            1316,
+            557,
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 100000,
+          "gaps": [
+            96740,
+            40958,
+            17341,
+            7341,
+            3108,
+            1316,
+            557,
+            235,
+            99,
+            42,
+            17,
+            7,
+            3,
+            1
+          ]
+        }
+      ],
+      "score": {
+        "family_hash": "f6ec6a656ac52089d8ac3d50e78dd9e71270cf1f2bce38a7070ba017d958f820",
+        "panel_hash": "a3c7354337e1a296c5831c8c14afe0dd666a7327cdafdc38e0069ed0e6d1763b",
+        "comparisons": 48369833,
+        "moves": 33678779,
+        "passes": 1340,
+        "task_count": 160,
+        "mean_log_normalized_total": 0.7285546547656362
+      },
+      "source_seeds": [
+        2
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": -0.0032311280625079535,
+        "mean_log_ratio": -0.0056545547652124785,
+        "ratios": {
+          "sedgewick": -0.009706141262296946,
+          "tokuda": -0.0032311280625079535,
+          "ciura": -0.004026394970832537
+        }
+      }
+    },
+    {
+      "schema_version": 3,
+      "program_hash": "0c50644bd3603f2c3ccd6f77fd57220f13804ca93d8cdc96bdc15bee19bf58b1",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "program": {
+        "schema_version": 3,
+        "type": "bounded_imperative",
+        "initializers": [
+          {
+            "op": "var",
+            "value": "n",
+            "args": []
+          }
+        ],
+        "body": [
+          {
+            "kind": "emit",
+            "target": 0,
+            "expression": {
+              "op": "var",
+              "value": "r0",
+              "args": []
+            },
+            "predicate": null
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "const",
+                  "value": 2.2490293412360547,
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          }
+        ],
+        "fuel_base": 1,
+        "fuel_log": 3,
+        "max_outputs": 256
+      },
+      "complexity": [
+        7,
+        2
+      ],
+      "sequences": [
+        {
+          "schema_version": 2,
+          "n": 32,
+          "gaps": [
+            14,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 55,
+          "gaps": [
+            24,
+            10,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 94,
+          "gaps": [
+            41,
+            18,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 160,
+          "gaps": [
+            71,
+            31,
+            14,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 274,
+          "gaps": [
+            121,
+            54,
+            24,
+            10,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 468,
+          "gaps": [
+            208,
+            92,
+            41,
+            18,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 800,
+          "gaps": [
+            355,
+            158,
+            70,
+            31,
+            13,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 1368,
+          "gaps": [
+            608,
+            270,
+            120,
+            53,
+            23,
+            10,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 2339,
+          "gaps": [
+            1040,
+            462,
+            205,
+            91,
+            40,
+            18,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 4000,
+          "gaps": [
+            1778,
+            790,
+            351,
+            156,
+            69,
+            30,
+            13,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 6840,
+          "gaps": [
+            3041,
+            1352,
+            601,
+            267,
+            118,
+            52,
+            23,
+            10,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 11696,
+          "gaps": [
+            5200,
+            2312,
+            1028,
+            457,
+            203,
+            90,
+            40,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 20000,
+          "gaps": [
+            8892,
+            3954,
+            1758,
+            781,
+            347,
+            154,
+            68,
+            30,
+            13,
+            6,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 34200,
+          "gaps": [
+            15206,
+            6761,
+            3006,
+            1336,
+            594,
+            264,
+            117,
+            52,
+            23,
+            10,
+            4,
+            2,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 58480,
+          "gaps": [
+            26002,
+            11561,
+            5140,
+            2285,
+            1016,
+            451,
+            200,
+            89,
+            39,
+            17,
+            7,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 100000,
+          "gaps": [
+            44463,
+            19770,
+            8790,
+            3908,
+            1737,
+            772,
+            343,
+            152,
+            67,
+            30,
+            13,
+            5,
+            2,
+            1
+          ]
+        }
+      ],
+      "score": {
+        "family_hash": "39cd6ed9fab9d03e784b7046096e4db4096c760f327f8b6a1e5718d554bc6993",
+        "panel_hash": "a3c7354337e1a296c5831c8c14afe0dd666a7327cdafdc38e0069ed0e6d1763b",
+        "comparisons": 49282942,
+        "moves": 33136009,
+        "passes": 1440,
+        "task_count": 160,
+        "mean_log_normalized_total": 0.6261650558466144
+      },
+      "source_seeds": [
+        3
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": 0.0023314298722849148,
+        "mean_log_ratio": -9.199683041960086e-05,
+        "ratios": {
+          "sedgewick": -0.004143583327504056,
+          "tokuda": 0.0023314298722849148,
+          "ciura": 0.0015361629639603388
+        }
+      }
+    },
+    {
+      "schema_version": 3,
+      "program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+      "selection_roles": [
+        "pareto",
+        "validation_winner"
+      ],
+      "program": {
+        "schema_version": 3,
+        "type": "bounded_imperative",
+        "initializers": [
+          {
+            "op": "const",
+            "value": 4.601367014111301,
+            "args": []
+          }
+        ],
+        "body": [
+          {
+            "kind": "emit",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "const",
+                  "value": 0.2523447905297538,
+                  "args": []
+                },
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          },
+          {
+            "kind": "assign",
+            "target": 0,
+            "expression": {
+              "op": "div",
+              "value": null,
+              "args": [
+                {
+                  "op": "var",
+                  "value": "r0",
+                  "args": []
+                },
+                {
+                  "op": "const",
+                  "value": 2.331770333500036,
+                  "args": []
+                }
+              ]
+            },
+            "predicate": null
+          }
+        ],
+        "fuel_base": 0,
+        "fuel_log": 2,
+        "max_outputs": 256
+      },
+      "complexity": [
+        9,
+        2
+      ],
+      "sequences": [
+        {
+          "schema_version": 2,
+          "n": 32,
+          "gaps": [
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 55,
+          "gaps": [
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 94,
+          "gaps": [
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 160,
+          "gaps": [
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 274,
+          "gaps": [
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 468,
+          "gaps": [
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 800,
+          "gaps": [
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 1368,
+          "gaps": [
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 2339,
+          "gaps": [
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 4000,
+          "gaps": [
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 6840,
+          "gaps": [
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 11696,
+          "gaps": [
+            7703,
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 20000,
+          "gaps": [
+            17963,
+            7703,
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 34200,
+          "gaps": [
+            17963,
+            7703,
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 58480,
+          "gaps": [
+            41887,
+            17963,
+            7703,
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        },
+        {
+          "schema_version": 2,
+          "n": 100000,
+          "gaps": [
+            97670,
+            41887,
+            17963,
+            7703,
+            3303,
+            1416,
+            607,
+            260,
+            111,
+            47,
+            20,
+            8,
+            3,
+            1
+          ]
+        }
+      ],
+      "score": {
+        "family_hash": "0faa17c3d297b5046add8796bd2e488a6bd7a3fd7f34bb3050e1a002fc10050b",
+        "panel_hash": "a3c7354337e1a296c5831c8c14afe0dd666a7327cdafdc38e0069ed0e6d1763b",
+        "comparisons": 48131856,
+        "moves": 33722197,
+        "passes": 1410,
+        "task_count": 160,
+        "mean_log_normalized_total": 0.5936742470849683
+      },
+      "source_seeds": [
+        4
+      ],
+      "validation_selection": {
+        "rule": "minimize_worst_strong_baseline_log_ratio",
+        "censored_tasks": 0,
+        "strong_baselines": [
+          "sedgewick",
+          "tokuda",
+          "ciura"
+        ],
+        "worst_log_ratio": -0.005137539451209167,
+        "mean_log_ratio": -0.007560966153913699,
+        "ratios": {
+          "sedgewick": -0.011612552650998169,
+          "tokuda": -0.005137539451209167,
+          "ciura": -0.005932806359533761
+        }
+      }
+    }
+  ]
+}

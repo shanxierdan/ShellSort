@@ -1,0 +1,533 @@
+\section{A \texorpdfstring{Sub-$N^{4/3}$}{Sub-N-to-the-4/3} Bound}
+\label{sec:theory}
+
+This section gives the complete proof path for the asymptotic claim.  The
+appendix repeats the argument with the longer constant checks and normal-form
+details.  The learned model and the experimental distribution play no role
+here: we work only with the exact frozen sequence.
+
+\subsection{Completion and main theorem}
+
+Recall the coprime integers
+
+\[
+  A=582942583375009,\qquad B=250000000000000,\qquad
+  R=A/B,
+\]
+
+and the learned tail $h_t=\lfloor\alpha R^t\rfloor$ from
+\cref{eq:geometric-backbone}.  Its relevant arithmetic parameter is
+
+\begin{equation}
+  \kappa:=\log_A R
+  =0.024901468995116044855\ldots.
+  \label{eq:main-kappa}
+\end{equation}
+
+The floor operation makes the tail practical, but it also creates residue
+classes that a fixed future window need not represent.  We remove only this
+asymptotic obstruction.  Set $s_0=2724$ and
+
+\begin{equation}
+  s_{r+1}=s_r+\lceil\log(s_r+2)\rceil,
+  \label{eq:main-companion-indices}
+\end{equation}
+
+where $\log$ is natural, and add $h_{s_r}+1$ whenever $h_{s_r}$ occurs.  The
+mathematical sequence is
+
+\begin{equation}
+  \mathcal H^\sharp_{\rm tune}
+  :=\mathcal H_{\rm exec}\cup\{h_{s_r}+1:r\ge0\}.
+  \label{eq:main-completed-sequence}
+\end{equation}
+
+This is one exact infinite definition, not a change made during evaluation.
+Exact integer cross multiplication gives
+
+\begin{equation}
+  h_{2723}\le10^{1000}<h_{2724}.
+  \label{eq:main-guard}
+\end{equation}
+
+Thus every added gap lies beyond the range of the experiments, or any
+realistic implementation.
+
+\begin{theorem}[Main bound]
+  \label{thm:main-text}
+  For every $N\le10^{1000}$, $\mathcal H^\sharp_{\rm tune}$ executes
+  exactly the gaps of $\mathcal H_{\rm exec}$.  Below $N$ it contains
+  $\Theta(\log N)$ backbone gaps and only
+  $\bigO(\log N/\log\log N)=o(\log N)$ companions.  Its worst-case
+  operation count satisfies, with
+  $\beta=1.024296451657\ldots$,
+  \[
+    \Omega(N^\beta)\le T(N)\le
+    \bigO\!\left(N^\beta\polylog N\right).
+  \]
+\end{theorem}
+
+The rest of the section proves the theorem.  The central point is that one
+unit companion inside a slowly growing future window removes the congruence
+obstruction caused by the rational-geometric floor.
+
+\subsection{One pass as an exact representation problem}
+
+Fix a current gap $d$.  Suppose the larger gaps $a_1,\ldots,a_m$ have already
+been executed, and define the representable multipliers
+
+\[
+  M_d(a_1,\ldots,a_m)
+  :=\left\{k\in\Z_{\ge0}:
+    kd=\sum_{i=1}^m c_i a_i,\quad c_i\in\Z_{\ge0}\right\}.
+\]
+
+Let $U_d$ be the number of missing positive multipliers, with $U_d=\infty$
+when the complement is infinite.  The generalized Frobenius pass lemma of
+Incerpi and Sedgewick~\cite[Lemma~1]{incerpi1985} gives
+
+\begin{equation}
+  \cost_d(N)=\bigO\bigl(N(U_d+1)\bigr).
+  \label{eq:main-frobenius-pass}
+\end{equation}
+
+The reason is that the earlier passes prevent inversions whose index distance
+is a representable multiple of $d$; only the missing multipliers can remain
+inside each $d$-chain.  Independently, insertion sorting the $d$ residue
+classes, each of length at most $\lceil N/d\rceil$, gives
+
+\begin{equation}
+  \cost_d(N)=\bigO(N^2/d).
+  \label{eq:main-trivial-pass}
+\end{equation}
+
+We will use the better of the two:
+
+\begin{equation}
+  \cost_d(N)=\bigO\!\left(
+    \min\{N^2/d,\ N(U_d+1)\}
+  \right).
+  \label{eq:main-combined-pass}
+\end{equation}
+
+It therefore suffices to bound the conductor of $M_d$, namely a threshold
+above which every multiplier is representable.
+
+For a backbone gap $d\asymp h_t$, take the next
+
+\begin{equation}
+  m=m(t):=\lceil\log_A h_t\rceil
+  =\kappa t+O(1)
+  \label{eq:main-window}
+\end{equation}
+
+backbone gaps.  Since $h_t=\alpha R^t+O(1)$, this window satisfies
+
+\begin{equation}
+  A^m=\Theta(d),\qquad
+  B^m=\Theta(d^{1-\kappa}),\qquad
+  d/B^m=\Theta(d^\kappa),\qquad
+  R^m=\Theta(d^\kappa).
+  \label{eq:main-window-scales}
+\end{equation}
+
+The growth of $m$ is necessary: a fixed window leaves a denominator modulus
+that grows with $d$.
+
+\subsection{Denominator clearing, carries, and the unit direction}
+
+Write $a_i=h_{t+i}$ for $1\le i\le m$ and define
+
+\begin{equation}
+  E_i=B^ia_i-A^id,\qquad
+  q_i=A^iB^{m-i},\qquad
+  v_i=B^{m-i}E_i.
+  \label{eq:main-qv}
+\end{equation}
+
+Then $B^ma_i=dq_i+v_i$.  Hence
+$kd=\sum_i c_i a_i$ holds exactly if there is an integer $D$ such that
+
+\begin{equation}
+  \sum_i c_iq_i=kB^m-D,
+  \qquad
+  \sum_i c_iv_i=Dd.
+  \label{eq:main-coupled}
+\end{equation}
+
+The first coordinate records rational-geometric scale and the second records
+all floor errors.  If
+$\theta_t=\alpha R^t-\lfloor\alpha R^t\rfloor$, then the error slopes are
+
+\begin{equation}
+  \sigma_i:=v_i/q_i
+  =\theta_t-R^{-i}\theta_{t+i},
+  \qquad |\sigma_i|<1.
+  \label{eq:main-slopes}
+\end{equation}
+
+For a current companion $d=h_t+1$, every slope is translated by $-1$, so the
+same width and uniform bounds hold.
+
+Now divide the first coordinate by its common factor $A$:
+
+\[
+  w_i=q_i/A=A^{i-1}B^{m-i},
+  \qquad Aw_i=Bw_{i+1}.
+\]
+
+These compound weights supply both a conductor and all moves within a fiber.
+
+\begin{lemma}[Compound coordinate structure]
+  \label{lem:main-compound}
+  The semigroup $\langle w_1,\ldots,w_m\rangle$ contains every integer
+  greater than
+  \[
+    F_m=(B-1)\sum_{i=2}^m w_i-w_1=\bigO(A^{m-1}).
+  \]
+  Moreover, with
+  \[
+    r_i=A\mathbf e_i-B\mathbf e_{i+1}\quad(1\le i<m),
+  \]
+  the full integer kernel is
+  \[
+    \ker_{\Z}(q)=\bigoplus_{i=1}^{m-1}\Z r_i.
+  \]
+\end{lemma}
+
+\begin{proof}
+  Repeatedly replace $B$ copies of $w_{i+1}$ by $A$ copies of $w_i$.
+  Every representable integer then has a unique normal form
+  $\sum_i c_iw_i$ with $0\le c_i<B$ for $i\ge2$.  The corresponding
+  Ap\'ery set has maximum $(B-1)\sum_{i=2}^m w_i$, which gives $F_m$.
+  For the kernel, reduce $w\cdot x=0$ modulo $A$.  Since $w_1=B^{m-1}$ is
+  invertible modulo $A$, $A$ divides $x_1$.  Subtract the required multiple
+  of $r_1$, remove the first coordinate, divide the remaining weights by
+  $A$, and induct.  This also proves independence.  The fully expanded
+  normal-form check is in \cref{lem:compound,prop:kernel}.
+\end{proof}
+
+The carries are local not only in coefficient space.  If
+
+\[
+  e_i:=Ba_{i+1}-Aa_i,
+\]
+
+then $-B<e_i<A$ and
+
+\begin{equation}
+  Av_i-Bv_{i+1}=-B^me_i.
+  \label{eq:main-carry-error}
+\end{equation}
+
+Thus changing a coefficient vector by $r_i$ preserves the first coordinate
+and changes its actual represented gap sum by exactly $-e_i$.
+
+For fixed main mass $Q$, the nonnegative real fiber
+
+\[
+  \mathcal P_Q=\{c\in\R_{\ge0}^m:q\cdot c=Q\}
+\]
+
+has error slopes exactly in
+$[\sigma_-,\sigma_+]$, where $\sigma_-=\min_i\sigma_i$ and
+$\sigma_+=\max_i\sigma_i$: the ratio $(v\cdot c)/Q$ is a convex
+combination of the $\sigma_i$.  A target slope at distance $\eta$ from the
+endpoints has a representation with every coefficient at least $S$ whenever
+
+\begin{equation}
+  Q\ge C(S/\eta)\sum_iq_i.
+  \label{eq:main-interior}
+\end{equation}
+
+Indeed, reserve $S$ in every coordinate and represent the remaining slope by
+the two endpoint coordinates.  Rounding the real carry coefficients to their
+nearest integers then changes each coefficient by at most $(A+B)/2$ and,
+by~\eqref{eq:main-carry-error}, leaves only an integer actual-value residual
+of magnitude $O_{A,B}(m)$.  These two elementary facts are stated with all
+constants in \cref{lem:interior,lem:rounding}.
+
+The residual is the point at which the companion is essential.  Suppose the
+window contains both $a_j=h_{t+j}$ and $a_j+1$.  The two variables have the
+same $q_j$, while their slopes differ by
+
+\begin{equation}
+  B^m/q_j=R^{-j}.
+  \label{eq:main-unit-width}
+\end{equation}
+
+Their exchange vector
+
+\[
+  s=-\mathbf e_{a_j}+\mathbf e_{a_j+1}
+\]
+
+preserves the main coordinate and changes the actual gap sum by exactly one.
+Consequently it can correct any integral rounding residual.
+
+\begin{lemma}[Conductor with one unit companion]
+  \label{lem:main-conductor}
+  For all sufficiently large $t$, let $d\in\{h_t,h_t+1\}$ be a present gap
+  and let $m=m(t)$.  If its future window contains a unit pair at an offset
+  $1\le j\le m$, then
+  \begin{equation}
+    U_d\le \cond M_d
+    =\bigO_{A,B}\!\left(
+      mR^j(d/B^m+1)
+    \right).
+    \label{eq:main-conductor}
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+  Fix a large multiplier $k$ and choose the first coordinate in
+  \eqref{eq:main-coupled} as $Q=kB^m-D=AX$.  For a desired error slope
+  $\tau=Dd/Q$, solving for $X$ gives
+
+  \[
+    X(\tau)=\frac{dkB^m}{A(d+\tau)}.
+  \]
+
+  On the bounded slope interval,
+  $|dX/d\tau|=\Theta_{A,B}(kB^m/d)$.  By~\eqref{eq:main-unit-width}, after
+  discarding the outer thirds of the unit-pair interval, its inverse image has
+  length $\Omega_{A,B}((kB^m/d)R^{-j})$.  If
+  $k\ge C R^j(d/B^m+1)$, this interval contains an integer $X$ and, after
+  increasing $C$, also has $X>F_m$.  The compound threshold therefore gives
+  a nonnegative integer reference point with first coordinate $Q$.
+
+  The chosen slope is $\eta=\Theta(R^{-j})$ away from the endpoints.
+  Since $\sum_iq_i=O_{A,B}(A^m)$, the interior condition
+  \eqref{eq:main-interior} holds with margin $S=C_{A,B}m$ once
+
+  \[
+    k\ge C_{A,B}mR^jR^m
+      =O_{A,B}\!\left(mR^j(d/B^m+1)\right),
+  \]
+
+  using~\eqref{eq:main-window-scales}.  Decompose the difference between the
+  integer reference point and this interior real point into adjacent carries
+  and the unit direction.  Round the carry coefficients.  Their remaining
+  actual-value error is an integer $r=O_{A,B}(m)$; move $-r$ steps along $s$
+  to remove it exactly.  The reserved margin keeps all coefficients
+  nonnegative.  The two equations in~\eqref{eq:main-coupled} now give
+  $\sum_i c_i a_i=kd$.  Thus every $k$ above the stated scale is
+  representable.  The augmented-kernel bookkeeping is written explicitly in
+  \cref{prop:augmented-kernel,thm:conductor}.
+\end{proof}
+
+This construction removes all residue classes; it does not assume that the
+future gaps happen to have a favorable greatest common divisor.
+
+\subsection{Sparse placement covers every window}
+
+For every sufficiently large $t$, recurrence
+\eqref{eq:main-companion-indices} puts the next companion at offset
+
+\begin{equation}
+  1\le j\le\lceil\log(t+2)\rceil<m(t).
+  \label{eq:main-nearby-companion}
+\end{equation}
+
+Hence every complete future window contains a unit pair.  Since
+$j<m(t)$, completeness also puts $h_{t+j+1}<N$; for all sufficiently large
+$t$, $h_{t+j}+1<h_{t+j+1}$.  Thus the companion itself is below $N$ and both
+members of the unit pair have been executed before the current pass.  Since
+$t=\Theta(\log d)$,
+
+\begin{equation}
+  R^j\le R(t+2)^{\log R}=\polylog d.
+  \label{eq:main-unit-polylog}
+\end{equation}
+
+Combining \cref{lem:main-conductor} with
+\eqref{eq:main-window-scales} and $m=O(\log d)$ yields
+
+\begin{equation}
+  U_d=\bigO(d^\kappa\polylog d)
+  \label{eq:main-holes}
+\end{equation}
+
+for every sufficiently large internal backbone or companion pass.
+
+The companions remain zero-density.  If $T=\Theta(\log N)$ is the largest
+backbone index below $N$, recurrence~\eqref{eq:main-companion-indices}
+advances by $\Theta(\log s)$ near index $s$.  Comparing the count with
+$\int_2^T ds/\log s$, or summing over dyadic index blocks, gives
+
+\begin{equation}
+  \#\{r:h_{s_r}<N\}
+  =\bigO\!\left(\frac{\log N}{\log\log N}\right)
+  =o(\log N).
+  \label{eq:main-companion-count}
+\end{equation}
+
+Together with the exact guard~\eqref{eq:main-guard}, this proves the first
+two claims of \cref{thm:main-text}.
+
+\subsection{Balancing and summing all passes}
+
+Substituting~\eqref{eq:main-holes} into
+\eqref{eq:main-combined-pass} gives, for every complete-window pass,
+
+\begin{equation}
+  \cost_d(N)=\bigO\!\left(
+    \min\{N^2/d,\ Nd^\kappa\polylog d\}
+  \right).
+  \label{eq:main-internal-pass}
+\end{equation}
+
+Ignoring polylogarithmic factors, the two terms balance at
+$d\asymp N^{1/(1+\kappa)}$.  Their common exponent is
+
+\begin{equation}
+  \beta
+  =2-\frac1{1+\kappa}
+  =1+\frac{\kappa}{1+\kappa}
+  =1.02429645165747606869\ldots.
+  \label{eq:main-final-exponent}
+\end{equation}
+
+To close the argument, we now sum every kind of pass rather than multiplying a
+worst per-pass bound by the number of gaps.  This also makes explicit why the
+incomplete windows at the top and the finitely tuned prefix do not hide a
+larger term.
+
+\begin{proposition}[Global pass sum]
+  \label{prop:main-global-sum}
+  Let
+  \[
+    D:=N^{1/(1+\kappa)}.
+  \]
+  The total cost of all backbone passes, companion passes, and tuned-prefix
+  passes below $N$ is $O(N^\beta\polylog N)$, with $\beta$ given by
+  \eqref{eq:main-final-exponent}.
+\end{proposition}
+
+\begin{proof}
+  We partition the passes into four classes.  First consider complete-window
+  passes with $d\le D$.  For these, use the representation side of
+  \eqref{eq:main-internal-pass}:
+
+  \begin{equation}
+    \sum_{\substack{d\le D\\\text{complete}}}\cost_d(N)
+    \le N\polylog N
+       \sum_{\substack{d\le D\\\text{complete}}}d^\kappa.
+    \label{eq:main-small-pass-sum}
+  \end{equation}
+
+  Apart from finitely many initial values, $h_t=\Theta(R^t)$.  At a companion
+  index there are only the two values $h_t$ and $h_t+1$, so adding companions
+  changes a geometric scale sum by at most a constant factor.  Consequently,
+
+  \begin{equation}
+    \sum_{d\le D}d^\kappa=O(D^\kappa),
+    \qquad
+    \sum_{d>D}\frac1d=O(D^{-1}).
+    \label{eq:main-geometric-sums}
+  \end{equation}
+
+  Equation~\eqref{eq:main-small-pass-sum} is therefore
+  $O(ND^\kappa\polylog N)$.
+
+  Second, for complete-window passes with $d>D$, use the insertion side of
+  \eqref{eq:main-internal-pass}.  The second estimate in
+  \eqref{eq:main-geometric-sums} gives
+
+  \begin{equation}
+    \sum_{\substack{d>D\\\text{complete}}}\cost_d(N)
+    \le N^2\sum_{d>D}\frac1d
+    =O(N^2/D).
+    \label{eq:main-large-pass-sum}
+  \end{equation}
+
+  Third, consider the top gaps, for which fewer than $m(t)$ future backbone
+  gaps lie below $N$.  Let $h_T<N$ be the largest backbone gap.  An incomplete
+  window satisfies $t+m(t)>T$.  Since $m(t)=\kappa t+O(1)$,
+
+  \begin{equation}
+    t>\frac{T}{1+\kappa}-O(1),
+    \qquad
+    h_t=\Omega\!\left(N^{1/(1+\kappa)}\right)=\Omega(D).
+    \label{eq:main-top-scale}
+  \end{equation}
+
+  The same statement holds for $h_t+1$.  Thus every incomplete-window pass is
+  already on the large-gap side.  Applying $O(N^2/d)$ and the reciprocal sum
+  in~\eqref{eq:main-geometric-sums} bounds all of them together by
+  $O(N^2/D)$; no conductor estimate is needed at the boundary.
+
+  Fourth, the learned prefix modifies only finitely many gaps.  For each fixed
+  early gap $d$, the first later unit pair consists of two consecutive fixed
+  integers.  They generate a numerical semigroup with a fixed conductor, so
+  only $O(1)$ multiples of $d$ are missing and
+  \eqref{eq:main-frobenius-pass} gives $O(N)$ for that pass.  Before the first
+  unit pair enters the gap list, $N$ ranges over a fixed finite interval and is
+  absorbed by the constant in the asymptotic bound.  Hence all tuned-prefix and
+  other pre-asymptotic passes contribute only $O(N)$.
+
+  Finally, the definition of $D$ gives the two identical powers
+
+  \begin{equation}
+    ND^\kappa
+      =N^{1+\kappa/(1+\kappa)}=N^\beta,
+    \qquad
+    \frac{N^2}{D}
+      =N^{2-1/(1+\kappa)}=N^\beta.
+    \label{eq:main-two-sides-meet}
+  \end{equation}
+
+  Adding the four classes proves the proposition.
+\end{proof}
+
+Substituting the exact value of $\kappa$ from~\eqref{eq:main-kappa} into
+\eqref{eq:main-final-exponent} closes the upper-bound part of
+\cref{thm:main-text}.  For the exact completed sequence in
+\eqref{eq:main-completed-sequence}, we obtain the promised bound:
+
+\begin{equation}
+  \boxed{
+  T_{\mathcal H^\sharp_{\rm tune}}(N)
+  =\bigO\!\left(
+    N^{1.024296451657\ldots}\polylog N
+  \right).}
+  \label{eq:main-boxed-bound}
+\end{equation}
+
+This completes the proof.  The appendix expands the normal-form, constant,
+kernel, and boundary checks used above.  It introduces no additional
+hypothesis.\par
+
+\subsection{A matching polynomial lower bound}
+
+The upper-bound exponent is not only an artifact of our analysis.  A recent
+lower bound of Zang~\cite[Theorem~3]{zang2026} applies to every gap sequence
+whose terms remain within a fixed distance of a rational geometric progression.
+That condition holds here.  Each backbone term differs from
+$\alpha(A/B)^t$ by less than one, each companion differs from the same term by
+at most one, and the finitely tuned prefix can be absorbed into one fixed
+distance constant.
+
+Write $\gamma=\log_B A$.  Zang's theorem therefore gives a worst-case swap
+count of
+
+\begin{equation}
+  \Omega\!\left(
+    N^{1+(\gamma-1)/(2\gamma-1)}
+  \right).
+  \label{eq:main-matching-lower}
+\end{equation}
+
+Since $\kappa=1-1/\gamma$,
+
+\[
+  1+\frac{\gamma-1}{2\gamma-1}
+  =1+\frac{\kappa}{1+\kappa}
+  =\beta.
+\]
+
+Every swap forces at least one counted sorting operation, so this is also an
+$\Omega(N^\beta)$ lower bound for our operation count.  Combined with
+\eqref{eq:main-boxed-bound}, the polynomial exponent is tight; only the
+polylogarithmic factor remains between the bounds.  The lower bound is an
+external 2026 preprint result, while the upper bound above is our contribution.
