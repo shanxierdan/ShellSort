@@ -22,9 +22,9 @@ import math
 from pathlib import Path
 
 try:
-    from scripts.analyze_v3_generalized_holes import generalized_hole_profile
+    from scripts.analyze_generalized_holes import generalized_hole_profile
 except ModuleNotFoundError:
-    from analyze_v3_generalized_holes import generalized_hole_profile
+    from analyze_generalized_holes import generalized_hole_profile
 
 
 DEFAULT_CASES = {
@@ -208,7 +208,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("result/v3/carry-orbit-stress.json"),
+        default=Path("result/discovery/carry-orbit-stress.json"),
     )
     args = parser.parse_args()
     reports = []
@@ -218,7 +218,7 @@ def main() -> None:
         )
     payload = {
         "schema_version": 1,
-        "status": "exact_parametric_generic_counterexample_not_frozen_v3_proof",
+        "status": "exact_parametric_generic_counterexample_not_frozen_candidate_proof",
         "claim_refuted": (
             "a polynomial-in-m multiple of d/B^m bounds every finite "
             "rational-floor quotient uniformly over rounding states"
@@ -229,7 +229,7 @@ def main() -> None:
         ],
         "remaining_frozen_orbit_requirement": (
             "exclude long low-controllability carry prefixes for the exact "
-            "V3 alpha,A,B orbit"
+            "candidate alpha,A,B orbit"
         ),
         "reports": reports,
     }

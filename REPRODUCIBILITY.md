@@ -1,103 +1,99 @@
-# Reproducibility guide
-
-This repository separates inexpensive verification from the computationally
-heavy discovery runs. Benchmark arrays are generated deterministically from
-the manifests in `data/`; no private dataset is required.
+# Reproducibility
 
 ## Environment
 
-Python 3.11 or newer is supported. A CPU-only environment is enough for exact
-evaluation and prefix tuning. CUDA is optional for the neural discovery stage.
+The supported runtime is Python 3.11 or newer.  Install all released components
+with:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -e '.[dev,train,perf]'
+python -m pip install -e '.[train,dev,perf]'
 ```
 
-## Fast checks
+PyTorch is required for discovery.  Numba accelerates exact operation counting.
+CUDA is optional and is not used by the frozen final benchmark.
 
-Run all unit, integration, and proof-completion tests:
-
-```bash
-python -m pytest
-```
-
-Reconstruct the broad empirical table from the frozen task-level counts:
+## Fast verification
 
 ```bash
+PYTHONPATH=. pytest -q
 python scripts/summarize_paper_broad_test.py
 ```
 
-The authoritative inputs are:
+The first command verifies program generation, search, checkpointing, exact
+cost caching, tuning constraints, sealed evaluation, and the proof-audit code.
+The second reconstructs the empirical table directly from task-level counts.
 
-- `result/v3/selected-v3.json`: validation-frozen V3 programs;
-- `result/v3_tune/v3_tune_selected.json`: frozen finite prefix;
-- `result/v3_tune/v3_tune_validation.json`: independent validation results;
-- `result/v3_tune/v3_tune_test.json`: one-time test against the three strongest
-  practical baselines;
-- `result/v3_tune/v3_tune_broad_test.json`: task-level counts for all seven
-  classical baselines in the paper.
+## Frozen artifacts
 
-## Generator discovery
+- `result/discovery/selected-programs.json`: validation-selected executable
+  generator programs;
+- `result/final/candidates.json`: proof-compatible finite-prefix candidates;
+- `result/final/selected.json`: candidate frozen by independent validation;
+- `result/final/validation.json`: independent validation measurements;
+- `result/final/test.json`: sealed test against the three strongest practical
+  baselines;
+- `result/final/benchmark.json`: task-level comparison with all seven classical
+  baselines used in the paper.
 
-Use a smoke run to verify the complete V3 pipeline:
+## Discovery
 
-```bash
-bash scripts/run_experiments_v3.sh smoke
-```
-
-The five-seed discovery experiment is:
-
-```bash
-DEVICE=cuda RUN_ROOT=result/v3-reproduction \
-  bash scripts/run_experiments_v3.sh full
-```
-
-This stage is computationally expensive and writes checkpoints and SQLite
-caches under `result/`; those generated files are ignored by Git.
-
-## Frozen-tail prefix tuning
-
-The smoke and full tuning workflows are:
+Smoke test:
 
 ```bash
-bash scripts/run_experiments_v3_tune.sh smoke
-V3_TUNE_RUN_ROOT=result/v3_tune_reproduction \
-  bash scripts/run_experiments_v3_tune.sh full
+bash scripts/run_discovery.sh smoke
 ```
 
-The one-time paper test used the immutable panel in
-`data/v3_tune_manifest.json`. The repository publishes its frozen output; do
-not use the test panel for candidate selection.
-
-## Proof-oriented checks
-
-The executable checks supporting the exact sequence definition and algebraic
-identities are available through:
+Full search:
 
 ```bash
-python -m pytest tests/test_proof_completion.py \
-  tests/test_v3_carry_intervals.py \
-  tests/test_v3_generalized_holes.py \
-  tests/test_v3_lattice_relations.py
+DEVICE=cuda RUN_ROOT=result/discovery-reproduction \
+  bash scripts/run_discovery.sh full
 ```
 
-Finite diagnostics can be regenerated with:
+Each seed writes atomic checkpoints and uses a shared SQLite cost cache.  The
+validation and extrapolation panels are defined in
+`data/discovery_manifest.json`.
+
+## Proof-constrained tuning
+
+Smoke test:
 
 ```bash
-python scripts/analyze_v3_complexity.py
-python scripts/analyze_v3_number_theory.py
-python scripts/analyze_v3_carry_intervals.py --include-small-model-demo
+bash scripts/run_tuning.sh smoke
 ```
 
-These computations check identities and finite instances; the asymptotic proof
-is in `paper/theory_summary.tex` and `paper/theory.tex`.
+Full tuning and independent validation:
 
-## Artifact policy
+```bash
+TUNING_RUN_ROOT=result/final-reproduction bash scripts/run_tuning.sh full
+```
 
-Committed JSON files contain frozen programs, manifests, and task-level counts
-needed to audit the paper. Generated arrays, model checkpoints, logs, and
-SQLite caches are excluded because they are large and reproducible. No secret
-test data or proprietary dependency is required.
+The search, validation, test, and benchmark panels are fixed in
+`data/experiment_manifest.json`.  Search and validation use distinct seeds.
+Classical baselines are report-only and do not enter the tuning objective.
+
+The one-time test is sealed by default:
+
+```bash
+TUNING_TEST_DRY_RUN=1 bash scripts/run_final_test.sh
+RUN_TUNING_TEST=1 bash scripts/run_final_test.sh
+```
+
+If an existing test artifact has a different protocol signature, the evaluator
+refuses to overwrite it.
+
+## Proof audits
+
+```bash
+python scripts/analyze_complexity.py
+python scripts/analyze_number_theory.py
+python scripts/analyze_carry_intervals.py --include-small-model-demo
+PYTHONPATH=. pytest -q tests/test_proof_completion.py \
+  tests/test_carry_intervals.py \
+  tests/test_generalized_holes.py \
+  tests/test_lattice_relations.py
+```
+
+These finite audits support the formal argument but do not replace it.  The
+complete proof and its citation map are in `docs/proof.md` and
+`docs/proof_citation_map.md`.

@@ -1,141 +1,106 @@
-"""Candidate benchmarking and baseline-normalized scoring."""
+"""Exact, resumable cost cache for frozen candidate evaluation."""
 
 from __future__ import annotations
 
-import math
-import hashlib
-import json
 import sqlite3
-from contextlib import closing
-from dataclasses import dataclass, replace
+import math
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Iterable
+from typing import Sequence
 
-from .baselines import BASELINES
-from .data import Task, make_array
-from .generators import GapGenerator, program_id
-from .shellsort import OperationLimitExceeded, SortCost, shellsort
-from .fast_shellsort import benchmark_shellsort
+from .data import COMPACT_ARRAY_GENERATOR, Task, make_array, make_compact_array
+from .fast_shellsort import benchmark_shellsort_cost
+from .sequence import GapSequence
+from .shellsort import OperationLimitExceeded
 
 
 @dataclass(frozen=True)
-class CandidateScore:
-    program_id: str
-    loss: float
-    reward: float
+class EvaluationCost:
     comparisons: int
     moves: int
-    task_count: int
-    complexity: tuple[int, int]
-    fidelity: str = "full"
+    censored: bool = False
+
+    @property
+    def total(self) -> int:
+        return self.comparisons + self.moves
 
 
-class Benchmark:
-    def __init__(
-        self,
-        tasks: Iterable[Task],
-        baseline_cache: Path | None = None,
-        candidate_budget_ratio: float = 10.0,
-    ) -> None:
-        self.tasks = tuple(tasks)
-        if not self.tasks:
-            raise ValueError("benchmark requires at least one task")
-        self.baseline_cache = baseline_cache
-        self.candidate_budget_ratio = candidate_budget_ratio
-        self._baseline_costs = self._compute_baseline_costs()
+class EvaluationCostCache:
+    """SQLite WAL cache shared by validation and extrapolation workers."""
+
+    def __init__(self, path: Path) -> None:
+        self.path = path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        self.connection = sqlite3.connect(path, timeout=120)
+        self.connection.execute("PRAGMA journal_mode=WAL")
+        self.connection.execute("PRAGMA busy_timeout=120000")
+        self.connection.execute(
+            "CREATE TABLE IF NOT EXISTS exact_cost ("
+            "cache_key TEXT PRIMARY KEY, sequence_hash TEXT NOT NULL, task_id TEXT NOT NULL, "
+            "comparisons INTEGER NOT NULL, moves INTEGER NOT NULL, censored INTEGER NOT NULL)"
+        )
+        self.connection.commit()
+        self.hits = 0
+        self.misses = 0
 
     @staticmethod
-    def _cache_key(task: Task) -> str:
-        payload = json.dumps(
-            {"version": 1, "n": task.n, "distribution": task.distribution, "seed": task.seed},
-            sort_keys=True,
-        )
-        return hashlib.sha256(payload.encode()).hexdigest()
+    def _key(sequence: GapSequence, task: Task) -> str:
+        return f"exact:{sequence.semantic_hash}:{task.task_id}"
 
-    def _cached_baseline(self, task: Task) -> int | None:
-        if self.baseline_cache is None:
-            return None
-        self.baseline_cache.parent.mkdir(parents=True, exist_ok=True)
-        with closing(sqlite3.connect(self.baseline_cache, timeout=120)) as connection:
-            connection.execute("PRAGMA journal_mode=WAL")
-            connection.execute(
-                "CREATE TABLE IF NOT EXISTS baseline_cost (cache_key TEXT PRIMARY KEY, cost INTEGER NOT NULL)"
-            )
-            row = connection.execute(
-                "SELECT cost FROM baseline_cost WHERE cache_key = ?", (self._cache_key(task),)
-            ).fetchone()
-            connection.commit()
-            return int(row[0]) if row else None
-
-    def _store_baseline(self, task: Task, cost: int) -> None:
-        if self.baseline_cache is None:
-            return
-        with closing(sqlite3.connect(self.baseline_cache, timeout=120)) as connection:
-            connection.execute("PRAGMA journal_mode=WAL")
-            connection.execute(
-                "CREATE TABLE IF NOT EXISTS baseline_cost (cache_key TEXT PRIMARY KEY, cost INTEGER NOT NULL)"
-            )
-            connection.execute(
-                "INSERT OR IGNORE INTO baseline_cost(cache_key, cost) VALUES (?, ?)",
-                (self._cache_key(task), cost),
-            )
-            connection.commit()
-
-    def _compute_baseline_costs(self) -> dict[str, int]:
-        costs: dict[str, int] = {}
-        for task in self.tasks:
-            cached = self._cached_baseline(task)
-            if cached is not None:
-                costs[task.task_id] = cached
-                continue
-            values = make_array(task)
-            best = min(benchmark_shellsort(values, fn(task.n))[1].total for fn in BASELINES.values())
-            costs[task.task_id] = max(1, best)
-            self._store_baseline(task, costs[task.task_id])
-        return costs
-
-    def evaluate(self, generator: GapGenerator) -> CandidateScore:
-        losses: list[float] = []
-        total = SortCost(0, 0)
-        for task in self.tasks:
-            values = make_array(task)
-            gaps = generator.generate(task.n)
-            maximum = max(1, round(self._baseline_costs[task.task_id] * self.candidate_budget_ratio))
-            sorted_values, cost = benchmark_shellsort(values, gaps, max_operations=maximum)
-            if sorted_values != sorted(values):
-                raise AssertionError("Shellsort returned an incorrect result")
-            losses.append(math.log((cost.total + 1) / (self._baseline_costs[task.task_id] + 1)))
-            total = SortCost(total.comparisons + cost.comparisons, total.moves + cost.moves)
-        loss = sum(losses) / len(losses)
-        return CandidateScore(
-            program_id=program_id(generator),
-            loss=loss,
-            reward=-loss,
-            comparisons=total.comparisons,
-            moves=total.moves,
-            task_count=len(self.tasks),
-            complexity=generator.complexity,
-        )
-
-
-class StagedBenchmark:
-    """Promote candidates through increasingly expensive benchmark stages."""
-
-    def __init__(
+    def evaluate(
         self,
-        stages: tuple[tuple[str, Benchmark], ...],
-        promotion_losses: tuple[float, ...],
-    ) -> None:
-        if not stages:
-            raise ValueError("at least one benchmark stage is required")
-        if len(promotion_losses) != len(stages) - 1:
-            raise ValueError("one promotion threshold is required between adjacent stages")
-        self.stages = stages
-        self.promotion_losses = promotion_losses
+        task: Task,
+        gaps: Sequence[int],
+        max_normalized_operations: float | None = None,
+        array_generator: str = "python_reference",
+    ) -> EvaluationCost:
+        if array_generator not in {"python_reference", COMPACT_ARRAY_GENERATOR}:
+            raise ValueError(f"unknown array generator: {array_generator}")
+        sequence = GapSequence(task.n, tuple(gaps))
+        budget_key = "exact" if max_normalized_operations is None else f"budget-{max_normalized_operations:g}"
+        key = f"{self._key(sequence, task)}:{array_generator}:{budget_key}"
+        cached = self.connection.execute(
+            "SELECT comparisons, moves, censored FROM exact_cost WHERE cache_key=?", (key,)
+        ).fetchone()
+        if cached is not None:
+            self.hits += 1
+            return EvaluationCost(int(cached[0]), int(cached[1]), bool(cached[2]))
 
-    def evaluate(self, generator: GapGenerator) -> CandidateScore:
-        for index, (name, benchmark) in enumerate(self.stages):
-            score = replace(benchmark.evaluate(generator), fidelity=name)
-            if index == len(self.stages) - 1 or score.loss > self.promotion_losses[index]:
-                return score
-        raise AssertionError("unreachable staged evaluation state")
+        operation_limit = None
+        if max_normalized_operations is not None:
+            operation_limit = max(
+                1, round(max_normalized_operations * task.n * math.log2(task.n + 1))
+            )
+        try:
+            compact = array_generator == COMPACT_ARRAY_GENERATOR
+            values = make_compact_array(task) if compact else make_array(task)
+            cost = benchmark_shellsort_cost(
+                values,
+                sequence.gaps,
+                max_operations=operation_limit,
+                copy_values=not compact,
+            )
+            result = EvaluationCost(cost.comparisons, cost.moves)
+        except OperationLimitExceeded:
+            assert operation_limit is not None
+            result = EvaluationCost(operation_limit, operation_limit, True)
+        self.connection.execute(
+            "INSERT OR IGNORE INTO exact_cost VALUES (?, ?, ?, ?, ?, ?)",
+            (
+                key, sequence.semantic_hash, task.task_id,
+                result.comparisons, result.moves, int(result.censored),
+            ),
+        )
+        self.connection.commit()
+        # A concurrent worker may have inserted the same deterministic value.
+        self.misses += 1
+        return result
+
+    def close(self) -> None:
+        self.connection.close()
+
+    def __enter__(self) -> "EvaluationCostCache":
+        return self
+
+    def __exit__(self, exc_type, exc, traceback) -> None:
+        self.close()

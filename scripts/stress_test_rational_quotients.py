@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Stress-test the variable-window quotient conjecture on small rational bases.
 
-The frozen V3 theorem may use its exact orbit, but it must not be justified by a
+The frozen candidate theorem may use its exact orbit, but it must not be justified by a
 false universal claim about every rational ratio.  This script generates small
 exact models h_t=floor(alpha*(A/B)^t), chooses m=ceil(log_A(h_t)), and computes
 the generalized holes exactly whenever the Apéry modulus is affordable.
@@ -16,9 +16,9 @@ import math
 from pathlib import Path
 
 try:
-    from scripts.analyze_v3_generalized_holes import generalized_hole_profile
+    from scripts.analyze_generalized_holes import generalized_hole_profile
 except ModuleNotFoundError:
-    from analyze_v3_generalized_holes import generalized_hole_profile
+    from analyze_generalized_holes import generalized_hole_profile
 
 
 DEFAULT_RATIOS = ((5, 2), (7, 3), (12, 5), (13, 5), (17, 7))
@@ -112,7 +112,7 @@ def main() -> None:
     parser.add_argument(
         "--output",
         type=Path,
-        default=Path("result/v3/rational-quotient-stress.json"),
+        default=Path("result/discovery/rational-quotient-stress.json"),
     )
     args = parser.parse_args()
     reports = [
@@ -121,7 +121,7 @@ def main() -> None:
     ]
     payload = {
         "schema_version": 1,
-        "status": "counterexample_stress_not_a_claim_about_the_frozen_v3_orbit",
+        "status": "counterexample_stress_not_a_claim_about_the_frozen_candidate_orbit",
         "alpha": [args.alpha.numerator, args.alpha.denominator],
         "window_rule": "m=max(2,ceil(log_A(h_t)))",
         "reports": reports,

@@ -14,7 +14,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESULT = ROOT / "result/v3_tune/v3_tune_broad_test.json"
+RESULT = ROOT / "result/final/benchmark.json"
 DISPLAY = {
     "candidate": "Ours",
     "shell": "Shell",

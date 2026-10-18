@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "smoke_search": {
+    "min_n": 64,
+    "max_n": 512,
+    "points": 3,
+    "seeds": [300],
+    "distributions": ["random", "reversed"]
+  },
+  "smoke_validation": {
+    "min_n": 513,
+    "max_n": 1024,
+    "points": 2,
+    "seeds": [400],
+    "distributions": ["random", "reversed"],
+    "baselines": ["untuned", "sedgewick", "tokuda", "ciura"]
+  },
+  "pilot_search": {
+    "min_n": 10000,
+    "max_n": 300000,
+    "points": 5,
+    "seeds": [300],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"]
+  },
+  "pilot_validation": {
+    "min_n": 300001,
+    "max_n": 1000000,
+    "points": 3,
+    "seeds": [400],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"],
+    "baselines": ["untuned", "sedgewick", "tokuda", "ciura"]
+  },
+  "search": {
+    "min_n": 100000,
+    "max_n": 3000000,
+    "points": 6,
+    "seeds": [300],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"]
+  },
+  "validation": {
+    "min_n": 3000001,
+    "max_n": 10000000,
+    "points": 4,
+    "seeds": [400],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"],
+    "baselines": ["untuned", "sedgewick", "tokuda", "ciura"]
+  },
+  "test": {
+    "min_n": 10000001,
+    "max_n": 100000000,
+    "points": 5,
+    "seeds": [1999],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"],
+    "baselines": ["untuned", "sedgewick", "tokuda", "ciura"],
+    "array_generator": "numpy_pcg64",
+    "success_rule": "zero censored tasks and negative mean log operation ratio against each of Sedgewick, Tokuda and Ciura"
+  },
+  "benchmark": {
+    "min_n": 10000001,
+    "max_n": 100000000,
+    "points": 5,
+    "seeds": [1999],
+    "distributions": ["random", "reversed", "nearly_sorted", "duplicates", "blocks"],
+    "baselines": ["untuned", "shell", "hibbard", "knuth", "pratt", "sedgewick", "tokuda", "ciura"],
+    "array_generator": "numpy_pcg64",
+    "primary_candidate_hash": "88c74cbecc0d3181ad6f51459f4fb7d84ba4da2e6358e4545756599f7bfa74d7",
+    "purpose": "post-freeze broad-baseline comparison on the unchanged test panel"
+  }
+}

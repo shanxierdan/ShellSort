@@ -35,7 +35,7 @@ except ImportError:  # pragma: no cover - exercised by minimal installations
     COMPACT_ARRAYS_AVAILABLE = False
 
 
-COMPACT_ARRAY_GENERATOR = "numpy_pcg64_v1"
+COMPACT_ARRAY_GENERATOR = "numpy_pcg64"
 
 
 @dataclass(frozen=True)

@@ -1,17 +1,6 @@
-"""Neural components; the deterministic core does not depend on this package."""
+"""Neural components for executable gap-program discovery."""
 
-from .network import ModelOutput, PolicyValueFeasibilityNet
-from .agent import NeuralStateEvaluator, resolve_device
-from .sequence_model import GapSequenceNet, SequenceModelOutput
-from .program_model_v3 import GeneratorProgramNet, ProgramModelOutput
+from .device import resolve_device
+from .program_model import GeneratorProgramNet, ProgramModelOutput
 
-__all__ = [
-    "ModelOutput",
-    "NeuralStateEvaluator",
-    "PolicyValueFeasibilityNet",
-    "resolve_device",
-    "GapSequenceNet",
-    "SequenceModelOutput",
-    "GeneratorProgramNet",
-    "ProgramModelOutput",
-]
+__all__ = ["GeneratorProgramNet", "ProgramModelOutput", "resolve_device"]

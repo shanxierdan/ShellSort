@@ -1,0 +1,587 @@
+{
+  "schema_version": 1,
+  "artifact_type": "tuning_candidates",
+  "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+  "proof_constraint": "finite prefix only; exact alpha and A/B geometric tail frozen",
+  "train_best_candidate_hash": "8c8cfff1ffe4c1f192aa2ceebe5c3dcf01d66b1fa2b277c9b2cf5d08a1f70982",
+  "candidates": [
+    {
+      "candidate_hash": "8c8cfff1ffe4c1f192aa2ceebe5c3dcf01d66b1fa2b277c9b2cf5d08a1f70982",
+      "selection_roles": [
+        "train_best"
+      ],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          116,
+          299,
+          585
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "8c8cfff1ffe4c1f192aa2ceebe5c3dcf01d66b1fa2b277c9b2cf5d08a1f70982",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851214225,
+        "moves": 607150636,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.81423584506862
+      }
+    },
+    {
+      "candidate_hash": "88c74cbecc0d3181ad6f51459f4fb7d84ba4da2e6358e4545756599f7bfa74d7",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          47,
+          116,
+          300,
+          585
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "88c74cbecc0d3181ad6f51459f4fb7d84ba4da2e6358e4545756599f7bfa74d7",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 850819403,
+        "moves": 607031600,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8145218539154455
+      }
+    },
+    {
+      "candidate_hash": "d4807681fbc29e4f71c8c2b9d3d01caf0d86a9b1647718bddac56191b4e0a1e8",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          115,
+          302,
+          590
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "d4807681fbc29e4f71c8c2b9d3d01caf0d86a9b1647718bddac56191b4e0a1e8",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851373030,
+        "moves": 607303541,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.81496700654933
+      }
+    },
+    {
+      "candidate_hash": "f385a022e415de7b05093ca11d196da1e92543db15cf38c17da1a69650163e0e",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          115,
+          300,
+          585
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "f385a022e415de7b05093ca11d196da1e92543db15cf38c17da1a69650163e0e",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851472586,
+        "moves": 607397848,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8151466558099281
+      }
+    },
+    {
+      "candidate_hash": "5bd4d4974d16a5e7f6bc27a77c79c67d1fec06228cafce4c8a5662e0fc77f98f",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          116,
+          300,
+          585
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "5bd4d4974d16a5e7f6bc27a77c79c67d1fec06228cafce4c8a5662e0fc77f98f",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851434489,
+        "moves": 607301550,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8151628998944056
+      }
+    },
+    {
+      "candidate_hash": "6d14f1a5f7ad988e95a1efe3927733b8e60b224b8b209d4c07b666358bdfb796",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          115,
+          302,
+          585
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "6d14f1a5f7ad988e95a1efe3927733b8e60b224b8b209d4c07b666358bdfb796",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851733581,
+        "moves": 607589142,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8152068495626147
+      }
+    },
+    {
+      "candidate_hash": "8bc69bf111b62ae1c6d3855206de3b0c2b8af29f562e5df4e335a500495c4683",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          116,
+          299,
+          584
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "8bc69bf111b62ae1c6d3855206de3b0c2b8af29f562e5df4e335a500495c4683",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851542150,
+        "moves": 607549080,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8153056873885469
+      }
+    },
+    {
+      "candidate_hash": "dbe9a9000126c7549d1f30bde2cd877826ac70cde5611d3dc406efb061bd1091",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          47,
+          105,
+          260,
+          598
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "dbe9a9000126c7549d1f30bde2cd877826ac70cde5611d3dc406efb061bd1091",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851188492,
+        "moves": 608201220,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8153624207761063
+      }
+    },
+    {
+      "candidate_hash": "686d36143d35c9e2c2923df79ac497444644c0fcaa3d5ca0c1e198790161aa3c",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          46,
+          105,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "686d36143d35c9e2c2923df79ac497444644c0fcaa3d5ca0c1e198790161aa3c",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851653888,
+        "moves": 608839757,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8157412222959408
+      }
+    },
+    {
+      "candidate_hash": "c5e18efc27917d3005a93a3b70fc74a419ceed2a1a12bca2fa53a044854bc60f",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          111,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "c5e18efc27917d3005a93a3b70fc74a419ceed2a1a12bca2fa53a044854bc60f",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851848760,
+        "moves": 608175266,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8157556013975837
+      }
+    },
+    {
+      "candidate_hash": "c4692da8099abbde6311b2f1720f9530450f700dbc54e70489e5b69e02813a66",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          18,
+          47,
+          111,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "c4692da8099abbde6311b2f1720f9530450f700dbc54e70489e5b69e02813a66",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851541899,
+        "moves": 608799024,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8159577232966562
+      }
+    },
+    {
+      "candidate_hash": "5ed954e4dacd8eeccc9078ac066efe73a92b74d9c59e1fade04be199c0f8f6b9",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          109,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "5ed954e4dacd8eeccc9078ac066efe73a92b74d9c59e1fade04be199c0f8f6b9",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 852090667,
+        "moves": 608708721,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8160082321561879
+      }
+    },
+    {
+      "candidate_hash": "0fee3abeaffc433a248f7c20d37b7d9d77a507bb33df46f3baac95782e4beb6a",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          47,
+          105,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "0fee3abeaffc433a248f7c20d37b7d9d77a507bb33df46f3baac95782e4beb6a",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 851900821,
+        "moves": 608931515,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8161019316435395
+      }
+    },
+    {
+      "candidate_hash": "7492a43c7f9f21f2b9e4dd0d2f124cec7ccbd52c587faaa45d8c80653bd46413",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          47,
+          111,
+          260,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "7492a43c7f9f21f2b9e4dd0d2f124cec7ccbd52c587faaa45d8c80653bd46413",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 852113049,
+        "moves": 609270623,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.816322389878572
+      }
+    },
+    {
+      "candidate_hash": "2c9ec27e4f27ccf40da1265b32823e5b66fb9d6172ee907d7f6832b2128a5356",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          19,
+          47,
+          105,
+          260,
+          598
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "2c9ec27e4f27ccf40da1265b32823e5b66fb9d6172ee907d7f6832b2128a5356",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 852350776,
+        "moves": 609076413,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8164969062203589
+      }
+    },
+    {
+      "candidate_hash": "bde3394bb677f1643658c1de65b08e208d1a0340d230f2fb24bec6bcdaf86895",
+      "selection_roles": [],
+      "candidate": {
+        "schema_version": 1,
+        "type": "finite_prefix",
+        "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c",
+        "prefix": [
+          1,
+          3,
+          8,
+          20,
+          47,
+          116,
+          300,
+          607
+        ],
+        "prefix_terms": 8,
+        "tail": {
+          "alpha_numerator": 420574650882923,
+          "alpha_denominator": 7668945023518835,
+          "ratio_numerator": 582942583375009,
+          "ratio_denominator": 250000000000000
+        },
+        "proof_compatibility": "finite_prefix_only_exact_geometric_tail"
+      },
+      "score": {
+        "candidate_hash": "bde3394bb677f1643658c1de65b08e208d1a0340d230f2fb24bec6bcdaf86895",
+        "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+        "comparisons": 852310036,
+        "moves": 609141156,
+        "task_count": 30,
+        "censored_tasks": 0,
+        "mean_log_normalized_total": 0.8165374450559252
+      }
+    }
+  ]
+}

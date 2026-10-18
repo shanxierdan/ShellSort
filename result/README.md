@@ -1,5 +1,11 @@
-# Results
+# Frozen results
 
-Each experiment writes to `result/<run_id>/`. Generated checkpoints, caches and metrics are ignored by Git; promote only compact frozen candidate programs and final reports deliberately.
+`discovery/` contains the validation-selected executable generators and the
+finite numerical audits used while analyzing their geometric structure.
 
-`v3_tune` profiles use isolated defaults: `result/v3_tune_smoke/`, `result/v3_tune_pilot/`, and `result/v3_tune/` for the formal run. Their artifacts consistently use the `v3_tune` prefix and never overwrite `result/v3/`. The formal run and one-time Test are complete; its authoritative narrative is `result/v3_tune/exp_v3_tune.md`.
+`final/` contains the proof-compatible prefix search, independent validation,
+sealed test, and broad seven-baseline benchmark.  `final/selected.json` is the
+authoritative machine-readable definition of the practical candidate, while
+`final/benchmark.json` contains the task-level counts reported in the paper.
+
+Generated checkpoints, SQLite caches, and logs are intentionally excluded.

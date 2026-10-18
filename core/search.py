@@ -1,95 +1,315 @@
-"""Evaluation cache, Pareto archive and a reproducible random-search baseline."""
+"""Population search over complete executable generator programs."""
 
 from __future__ import annotations
 
-import hashlib
+import math
 import random
-from dataclasses import asdict
-from typing import Callable, Iterable
+from dataclasses import asdict, dataclass
 
-from .dsl import Expr
-from .evaluation import Benchmark, CandidateScore
-from .generators import GapGenerator
+import torch
 
+from model.program_model import GeneratorProgramNet
+from model.behavior import TraceSample
+from model.program_training import ReplayBuffer, ProgramSample, collate_program
 
-class SemanticCache:
-    def __init__(self, probe_sizes: tuple[int, ...] = (32, 64, 128, 256, 512)) -> None:
-        self.probe_sizes = probe_sizes
-        self._scores: dict[str, CandidateScore] = {}
-
-    def fingerprint(self, generator: GapGenerator) -> str:
-        outputs = tuple(generator.generate(n) for n in self.probe_sizes)
-        return hashlib.sha256(repr(outputs).encode()).hexdigest()
-
-    def get(self, generator: GapGenerator) -> CandidateScore | None:
-        return self._scores.get(self.fingerprint(generator))
-
-    def put(self, generator: GapGenerator, score: CandidateScore) -> None:
-        self._scores[self.fingerprint(generator)] = score
-
-    def __len__(self) -> int:
-        return len(self._scores)
+from .benchmark import AbsoluteBenchmark, FamilyScore, SequenceTaskScore
+from .program import GeneratorProgram, MUTATION_KINDS, mutate_program, random_program
+from .sequence import GapSequence, SequenceFamily
+from .data import make_array
+from .trace import deletion_counterfactuals
 
 
-class ParetoArchive:
-    """Minimizes performance loss, AST size and AST depth."""
+@dataclass(frozen=True)
+class SearchConfig:
+    population_size: int = 32
+    elite_parents: int = 8
+    children_per_parent: int = 5
+    random_fraction: float = 0.30
+    complexity_weight: float = 0.001
+    novelty_weight: float = 0.02
 
-    def __init__(self) -> None:
-        self._items: dict[str, CandidateScore] = {}
+
+@dataclass(frozen=True)
+class SearchIteration:
+    iteration: int
+    evaluated_programs: int
+    replay_size: int
+    archive_size: int
+    best_log_normalized_total: float
+    best_program_size: int
+
+
+class ProgramArchive:
+    def __init__(self, panel_hash: str) -> None:
+        self.panel_hash = panel_hash
+        self._items: dict[str, tuple[GeneratorProgram, SequenceFamily, FamilyScore]] = {}
 
     @staticmethod
-    def _objectives(score: CandidateScore) -> tuple[float, int, int]:
-        return score.loss, score.complexity[0], score.complexity[1]
+    def _objectives(program: GeneratorProgram, score: FamilyScore) -> tuple[float, float, float, int]:
+        return (*score.objectives, program.complexity[0])
 
     @classmethod
-    def _dominates(cls, left: CandidateScore, right: CandidateScore) -> bool:
-        a, b = cls._objectives(left), cls._objectives(right)
+    def _dominates(cls, left, right) -> bool:
+        a, b = cls._objectives(left[0], left[2]), cls._objectives(right[0], right[2])
         return all(x <= y for x, y in zip(a, b)) and any(x < y for x, y in zip(a, b))
 
-    def add(self, score: CandidateScore) -> bool:
-        if any(self._dominates(item, score) for item in self._items.values()):
+    def add(self, program: GeneratorProgram, family: SequenceFamily, score: FamilyScore) -> bool:
+        if score.panel_hash != self.panel_hash:
+            raise ValueError("cannot compare candidates from different panels")
+        item = (program, family, score)
+        if any(self._dominates(existing, item) for existing in self._items.values()):
             return False
-        self._items = {
-            key: item for key, item in self._items.items() if not self._dominates(score, item)
-        }
-        self._items[score.program_id] = score
+        self._items = {key: value for key, value in self._items.items() if not self._dominates(item, value)}
+        self._items[program.program_hash] = item
         return True
 
-    def records(self) -> list[dict[str, object]]:
-        ordered = sorted(self._items.values(), key=self._objectives)
-        return [asdict(item) for item in ordered]
+    def items(self):
+        return sorted(self._items.values(), key=lambda x: self._objectives(x[0], x[2]))
 
 
-def random_expression(rng: random.Random, variables: tuple[str, ...], depth: int) -> Expr:
-    if depth <= 1 or rng.random() < 0.35:
-        if rng.random() < 0.65:
-            return Expr.variable(rng.choice(variables))
-        return Expr.constant(rng.choice((0.5, 1, 2, 3, 4)))
-    op = rng.choice(("add", "sub", "mul", "div", "min", "max", "floor", "sqrt", "log"))
-    arity = 1 if op in {"floor", "sqrt", "log"} else 2
-    return Expr(op, tuple(random_expression(rng, variables, depth - 1) for _ in range(arity)))
+class ProgramSearch:
+    def __init__(
+        self,
+        model: GeneratorProgramNet,
+        benchmark: AbsoluteBenchmark,
+        sizes: tuple[int, ...],
+        device: torch.device,
+        seed: int = 0,
+        config: SearchConfig | None = None,
+    ) -> None:
+        self.model = model
+        self.benchmark = benchmark
+        self.sizes = tuple(sorted(sizes))
+        if {task.n for task in benchmark.tasks} != set(self.sizes):
+            raise ValueError("benchmark does not match program probe sizes")
+        self.device = device
+        self.rng = random.Random(seed)
+        self.config = config or SearchConfig()
+        self.replay = ReplayBuffer()
+        self.archive = ProgramArchive(benchmark.panel_hash)
+        self.population: list[GeneratorProgram] = []
+        self.scores: dict[str, FamilyScore] = {}
+        self.families: dict[str, SequenceFamily] = {}
+        self.records: dict[str, tuple[SequenceTaskScore, ...]] = {}
+        self.semantic_best: dict[str, tuple[int, str]] = {}
+        self.evaluations = 0
 
+    def _family(self, program: GeneratorProgram) -> SequenceFamily:
+        return SequenceFamily(tuple(GapSequence(n, program.generate(n)) for n in self.sizes))
 
-def random_search(
-    factory: Callable[[random.Random], GapGenerator],
-    benchmark: Benchmark,
-    budget: int,
-    seed: int,
-) -> tuple[ParetoArchive, int]:
-    rng = random.Random(seed)
-    cache = SemanticCache()
-    archive = ParetoArchive()
-    evaluations = 0
-    for _ in range(budget):
-        generator = factory(rng)
-        try:
-            score = cache.get(generator)
-            if score is None:
-                score = benchmark.evaluate(generator)
-                cache.put(generator, score)
-                evaluations += 1
-            archive.add(score)
-        except (ArithmeticError, OverflowError, ValueError):
-            continue
-    return archive, evaluations
+    def _ranked_semantic_unique(self, programs: list[GeneratorProgram]) -> list[GeneratorProgram]:
+        """Return scored programs with one best representative per behavior."""
+        representatives: dict[str, GeneratorProgram] = {}
+        for program in programs:
+            if program.program_hash not in self.scores:
+                continue
+            semantic = self.families[program.program_hash].family_hash
+            current = representatives.get(semantic)
+            if current is None or (
+                self._scalar(program), program.complexity, program.program_hash
+            ) < (
+                self._scalar(current), current.complexity, current.program_hash
+            ):
+                representatives[semantic] = program
+        return sorted(representatives.values(), key=lambda x: (self._scalar(x), x.program_hash))
 
+    def _assert_population_consistent(self) -> None:
+        missing = [x.program_hash for x in self.population if x.program_hash not in self.scores]
+        if missing:
+            raise RuntimeError(f"population contains {len(missing)} unscored programs")
+        semantics = [self.families[x.program_hash].family_hash for x in self.population]
+        if len(semantics) != len(set(semantics)):
+            raise RuntimeError("population contains semantic duplicates")
+
+    def initialize(self) -> None:
+        attempts = 0
+        representatives: dict[str, GeneratorProgram] = {}
+        while len(representatives) < self.config.population_size and attempts < 50 * self.config.population_size:
+            attempts += 1
+            program = random_program(self.rng)
+            family = self._family(program)
+            semantic = family.family_hash
+            existing = representatives.get(semantic)
+            if existing is None or (program.complexity, program.program_hash) < (
+                existing.complexity, existing.program_hash
+            ):
+                representatives[semantic] = program
+        if not representatives:
+            raise RuntimeError("initialization produced no programs")
+        evaluated = self._evaluate_many(list(representatives.values()), record_replay=True)
+        self.population = self._ranked_semantic_unique(evaluated)[: self.config.population_size]
+        self._assert_population_consistent()
+
+    def _evaluate_many(self, programs: list[GeneratorProgram], record_replay: bool) -> list[GeneratorProgram]:
+        evaluated: list[GeneratorProgram] = []
+        for program in programs:
+            if program.program_hash in self.scores:
+                evaluated.append(program)
+                continue
+            family = self._family(program)
+            semantic = family.family_hash
+            existing = self.semantic_best.get(semantic)
+            if existing and existing[1] != program.program_hash and existing[0] <= program.complexity[0]:
+                continue
+            self.semantic_best[semantic] = (program.complexity[0], program.program_hash)
+            score, records = self.benchmark.evaluate_family(family, include_traces=True)
+            self.scores[program.program_hash] = score
+            self.families[program.program_hash] = family
+            self.records[program.program_hash] = records
+            self.archive.add(program, family, score)
+            self.evaluations += 1
+            evaluated.append(program)
+            if record_replay:
+                samples = []
+                for task, record in zip(self.benchmark.tasks, records):
+                    assert record.trace is not None
+                    behavior = TraceSample.from_trace(task.distribution, record.trace)
+                    samples.append(ProgramSample(program.to_dict(), behavior))
+                self.replay.extend(samples)
+        return evaluated
+
+    def _novelty(self, program: GeneratorProgram) -> float:
+        family = self.families[program.program_hash]
+        fingerprints = {tuple(sequence.gaps) for sequence in family.sequences}
+        return len(fingerprints) / len(family.sequences)
+
+    def _scalar(self, program: GeneratorProgram) -> float:
+        score = self.scores[program.program_hash]
+        return (
+            score.mean_log_normalized_total
+            + self.config.complexity_weight * program.complexity[0]
+            - self.config.novelty_weight * self._novelty(program)
+        )
+
+    def _parents(self) -> list[GeneratorProgram]:
+        self._assert_population_consistent()
+        ordered = sorted(self.population, key=self._scalar)
+        archive = [item[0] for item in self.archive.items()]
+        combined = {x.program_hash: x for x in ordered[: self.config.elite_parents] + archive}
+        return self._ranked_semantic_unique(list(combined.values()))[: self.config.elite_parents]
+
+    @property
+    def best_program(self) -> GeneratorProgram:
+        self._assert_population_consistent()
+        if not self.population:
+            raise RuntimeError("search has no population")
+        return min(self.population, key=lambda x: (self._scalar(x), x.program_hash))
+
+    def candidate_items(self):
+        """Export the Pareto set plus the scalar training winner."""
+        items = {item[0].program_hash: item for item in self.archive.items()}
+        best = self.best_program
+        items[best.program_hash] = (
+            best, self.families[best.program_hash], self.scores[best.program_hash]
+        )
+        return sorted(items.values(), key=lambda x: (x[0].program_hash != best.program_hash, self._scalar(x[0])))
+
+    @torch.no_grad()
+    def _mutation_kind(self, program: GeneratorProgram) -> str:
+        records = self.records[program.program_hash]
+        record = max((x for x in records if x.trace is not None), key=lambda x: x.trace.n)  # type: ignore[union-attr]
+        task = next(x for x in self.benchmark.tasks if x.task_id == record.task_id)
+        behavior = TraceSample.from_trace(task.distribution, record.trace)  # type: ignore[arg-type]
+        batch = collate_program([ProgramSample(program.to_dict(), behavior)], self.device)
+        self.model.eval()
+        output = self.model(
+            batch.program_tokens, batch.program_padding, batch.gap_features,
+            batch.gap_padding, batch.context,
+        )
+        index = int(torch.distributions.Categorical(logits=output.mutation_logits[0]).sample())
+        return MUTATION_KINDS[index]
+
+    def _propose(self, parents: list[GeneratorProgram]):
+        children: dict[str, GeneratorProgram] = {}
+        provenance: dict[str, tuple[str, GeneratorProgram]] = {}
+        for parent in parents:
+            attempts = produced = 0
+            while produced < self.config.children_per_parent and attempts < 10 * self.config.children_per_parent:
+                attempts += 1
+                kind = self.rng.choice(MUTATION_KINDS) if self.rng.random() < self.config.random_fraction else self._mutation_kind(parent)
+                child = mutate_program(parent, kind, self.rng)
+                if child.program_hash == parent.program_hash or child.program_hash in children:
+                    continue
+                family = self._family(child)
+                existing = self.semantic_best.get(family.family_hash)
+                if existing and existing[0] <= child.complexity[0]:
+                    continue
+                children[child.program_hash] = child
+                provenance[child.program_hash] = (kind, parent)
+                produced += 1
+        return list(children.values()), provenance
+
+    def step(self, iteration: int, train_callback) -> SearchIteration:
+        if not self.population:
+            self.initialize()
+        train_callback(self.replay)
+        parents = self._parents()
+        children, provenance = self._propose(parents)
+        before = self.evaluations
+        evaluated_children = self._evaluate_many(children, record_replay=True)
+        improvements: list[ProgramSample] = []
+        for child in evaluated_children:
+            kind, parent = provenance[child.program_hash]
+            improvement = self._scalar(parent) - self._scalar(child)
+            if improvement <= 0:
+                continue
+            for task, record in zip(self.benchmark.tasks, self.records[parent.program_hash]):
+                assert record.trace is not None
+                improvements.append(ProgramSample(
+                    parent.to_dict(), TraceSample.from_trace(task.distribution, record.trace), kind, improvement
+                ))
+        self.replay.extend(improvements)
+        candidates = parents + evaluated_children
+        self.population = self._ranked_semantic_unique(
+            list({x.program_hash: x for x in candidates}.values())
+        )[: self.config.population_size]
+        self._assert_population_consistent()
+        # One exact small-task counterfactual per iteration supplies genuine
+        # per-gap marginal labels without dominating execution time.
+        if self.population:
+            program = self.population[0]
+            task = self.benchmark.tasks[0]
+            sequence = self.families[program.program_hash].for_n(task.n)
+            record = next(x for x in self.records[program.program_hash] if x.task_id == task.task_id)
+            if record.trace is not None:
+                counterfactuals = deletion_counterfactuals(make_array(task), sequence)
+                behavior = TraceSample.from_trace(
+                    task.distribution, record.trace, counterfactuals=counterfactuals
+                )
+                self.replay.extend([ProgramSample(program.to_dict(), behavior)])
+        best = self.best_program
+        return SearchIteration(
+            iteration, self.evaluations - before, len(self.replay), len(self.archive.items()),
+            self.scores[best.program_hash].mean_log_normalized_total, best.complexity[0],
+        )
+
+    def state_dict(self) -> dict[str, object]:
+        return {
+            "schema_version": 1,
+            "rng_state": self.rng.getstate(),
+            "population": [x.to_dict() for x in self.population],
+            "archive": [x[0].to_dict() for x in self.archive.items()],
+            "replay": self.replay.state_dict(),
+            "evaluations": self.evaluations,
+        }
+
+    def load_state_dict(self, payload: dict[str, object]) -> None:
+        if payload.get("schema_version") != 1:
+            raise ValueError("unsupported search-state schema")
+        self.rng.setstate(payload["rng_state"])  # type: ignore[arg-type]
+        saved_population = [GeneratorProgram.from_dict(x) for x in payload["population"]]  # type: ignore[arg-type]
+        archived = [GeneratorProgram.from_dict(x) for x in payload.get("archive", [])]  # type: ignore[arg-type]
+        self.replay.load_state_dict(payload["replay"])  # type: ignore[arg-type]
+        self.archive = ProgramArchive(self.benchmark.panel_hash)
+        self.scores.clear(); self.families.clear(); self.records.clear(); self.semantic_best.clear()
+        old_evaluations = int(payload.get("evaluations", 0)); self.evaluations = 0
+        restored = self._evaluate_many(
+            list({x.program_hash: x for x in saved_population + archived}.values()), False
+        )
+        restored_hashes = {x.program_hash for x in restored}
+        population = [x for x in saved_population if x.program_hash in restored_hashes]
+        if not population:
+            population = restored
+        self.population = self._ranked_semantic_unique(population)[: self.config.population_size]
+        self._assert_population_consistent()
+        self.evaluations = old_evaluations

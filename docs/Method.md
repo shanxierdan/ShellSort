@@ -1,4 +1,4 @@
-# Method V3：排序轨迹引导的可执行生成器程序发现
+# Method：排序轨迹引导的可执行生成器程序发现
 
 ## 1. 方法目标
 
@@ -9,7 +9,7 @@ G:n -> H_G(n)，
 n>h_1>...>h_k=1。
 ```
 
-V3 不搜索固定 gap 表，不从独立 H 事后回归公式，也不限制为 Recursive、Enumerative 或 LogPosition 函数族。搜索对象从始至终就是完整生成器程序 G。
+本方法不搜索固定 gap 表，不从独立 H 事后回归公式，也不限制为 Recursive、Enumerative 或 LogPosition 函数族。搜索对象从始至终就是完整生成器程序 G。
 
 ```text
 完整可执行程序 G
@@ -166,7 +166,7 @@ abs(H)。
 
 ## 7. 群体程序搜索
 
-V3 维护完整生成器 population：
+系统维护完整生成器 population：
 
 ```text
 随机产生多样、完整、有界程序

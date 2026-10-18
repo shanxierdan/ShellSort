@@ -1,0 +1,35 @@
+{
+  "run_dir": "result/final",
+  "manifest": "data/experiment_manifest.json",
+  "source": "result/discovery/selected-programs.json",
+  "stage": "search",
+  "seed": 0,
+  "iterations": 24,
+  "population": 20,
+  "elite_parents": 5,
+  "children_per_parent": 2,
+  "random_fraction": 0.25,
+  "initial_jitter": 0.18,
+  "minimum_jitter": 0.015,
+  "prefix_terms": 8,
+  "points": null,
+  "distributions": null,
+  "cache": "result/final/cost.sqlite",
+  "export_limit": 16,
+  "resume": true,
+  "schema_version": 1,
+  "array_generator": "numpy_pcg64",
+  "sizes": [
+    100000,
+    197435,
+    389806,
+    769614,
+    1519487,
+    3000000
+  ],
+  "task_seeds": [
+    300
+  ],
+  "panel_hash": "606be52b488d9b224365f0125d4bd4c485aefcc0b51413a1c52b12167fd6c496",
+  "source_program_hash": "f8e20407ede6a625fff7e6fb2c9f093bb026fc0ea8ddd87cea821525891e731c"
+}

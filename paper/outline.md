@@ -115,7 +115,7 @@ Only two subsections and two tables.
 
 - 25 equal-weight tasks, five sizes from (10^7) to (10^8), five input types;
 - Table 2 compares our sequence with Shell, Hibbard, Knuth, Pratt, Sedgewick,
-  Tokuda, and Ciura; Original V3 is not a final baseline;
+  Tokuda, and Ciura; The untuned backbone is not a final baseline;
 - raw geometric-mean comparisons, moves, total operations, and reversed total
   are shown in billions;
 - green/down and red/up annotations give the change from each baseline to our
