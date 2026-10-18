@@ -13,7 +13,7 @@ of Hong Kong, Shenzhen, with the supplied institutional email address.
   by the machine-learning community.
 - Title: *A New Gap Sequence for Shellsort: RL-Driven Algorithm Discovery
   Beyond N^(4/3)*.
-- Comments: `25 pages; 2 tables; full proof and technical appendix.`
+- Comments: `24 pages; 2 tables; full proof and technical appendix.`
 - License: choose explicitly in the arXiv submission form after confirming the
   authors' intended reuse policy.
 
@@ -24,9 +24,9 @@ bound inline instead.
 ## Source archive contents
 
 The ready-to-upload archive is `shellsort-arxiv-source.tar.gz`. Its SHA-256 is
-`28574dbac2af7f980c3e73dc524e6103954a140f5036d238dc1405b9f42a4c52`.
+`99574171d908e109cd8732aa798caf7082aa27b91eaba32f84bdc68bd024280f`.
 The corresponding `main.pdf` SHA-256 is
-`42aa9d31ddb6fe072fdcd4201dc213a3d45eaf400ad5431795ca50fadb5a8361`.
+`c65855bb0fb517888795b814ba16729bc8d065e2958c92809ff9b544124f91d3`.
 
 Include only:
 
@@ -53,9 +53,9 @@ downloaded ACM zip: none is used by `main.tex`.
 - Bibliography generated without missing entries or warnings.
 - No undefined references, overfull boxes, embedded JavaScript, or encryption.
 - All fonts embedded in the generated PDF.
-- All 85 project tests pass; the exact proof-completion tests also pass alone.
+- All 54 project tests pass, including the exact proof-completion tests.
 - Every value in the broad empirical table was recomputed from the frozen JSON.
-- The 2026 Zang lower bound was checked against the current arXiv v2 and gives
+- The 2026 Zang lower bound was checked against the current arXiv revision and gives
   exactly the same polynomial exponent as the paper's upper bound.
 
 After upload, inspect arXiv's generated PDF page by page before finalizing the
