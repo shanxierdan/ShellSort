@@ -88,14 +88,11 @@ model/      program/trace encoder and self-supervised training
 scripts/    discovery, tuning, final evaluation, and proof audits
 data/       frozen task-panel manifests
 result/     selected programs and frozen final measurements
-docs/       method, experiment protocol, and complete proof
-paper/      manuscript source
 tests/      unit and integration tests for the released pipeline
 ```
 
 The main method is documented in [`docs/Method.md`](docs/Method.md), the final
-experimental protocol in [`docs/Experiment.md`](docs/Experiment.md), and the
-complexity proof in [`docs/proof.md`](docs/proof.md).
+experimental protocol in [`docs/Experiment.md`](docs/Experiment.md)
 
 ## License
 
